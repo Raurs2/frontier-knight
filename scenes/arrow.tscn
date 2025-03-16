@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cv0s7i1ooij1s"]
+
+[ext_resource type="Script" path="res://scripts/arrow.gd" id="1_ey3ui"]
+[ext_resource type="Texture2D" uid="uid://dyaayqcjnovpu" path="res://assets/weapons/arrow.png" id="2_kob38"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m1eb2"]
+size = Vector2(128, 8)
+
+[node name="Arrow" type="Area2D"]
+top_level = true
+collision_layer = 0
+collision_mask = 7
+script = ExtResource("1_ey3ui")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_m1eb2")
+
+[node name="Arrow" type="Sprite2D" parent="."]
+scale = Vector2(0.213961, 0.213961)
+texture = ExtResource("2_kob38")
+flip_h = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

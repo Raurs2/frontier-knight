@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=3 uid="uid://drsur2jpwuxbe"]
+
+[ext_resource type="Script" path="res://scripts/death_effect.gd" id="1_x12wj"]
+
+[sub_resource type="Gradient" id="Gradient_pbd8f"]
+colors = PackedColorArray(1, 1, 1, 1, 0.466181, 0.466181, 0.466181, 1)
+
+[node name="DeathEffect" type="CPUParticles2D"]
+amount = 20
+randomness = 0.5
+lifetime_randomness = 0.2
+spread = 46.35
+gravity = Vector2(0, -100)
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+angular_velocity_min = -29.09
+angular_velocity_max = 14.55
+radial_accel_min = -64.65
+radial_accel_max = 62.63
+tangential_accel_min = -56.56
+tangential_accel_max = 100.0
+scale_amount_min = 10.0
+scale_amount_max = 100.0
+color_ramp = SubResource("Gradient_pbd8f")
+script = ExtResource("1_x12wj")

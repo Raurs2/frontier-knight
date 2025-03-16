@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://btmbenaftkyf8"]
+
+[ext_resource type="Script" path="res://scripts/bow.gd" id="1_vthey"]
+[ext_resource type="Texture2D" uid="uid://c8edv5qdf7k7v" path="res://assets/weapons/bow/bow 1.png" id="2_pqva3"]
+[ext_resource type="Texture2D" uid="uid://b1b1t8c30g7or" path="res://assets/weapons/bow/bow 2.png" id="3_jgjwk"]
+[ext_resource type="Texture2D" uid="uid://c4b52ocywwj8" path="res://assets/weapons/bow/bow 3.png" id="4_eqsd6"]
+[ext_resource type="Texture2D" uid="uid://q31i7ik12vsj" path="res://assets/weapons/bow/bow 4.png" id="5_fnn6w"]
+[ext_resource type="Texture2D" uid="uid://cc3lygscswoth" path="res://assets/weapons/bow/bow 5.png" id="6_pikdu"]
+[ext_resource type="Texture2D" uid="uid://gtao2o06jr6b" path="res://assets/weapons/bow/bow 6.png" id="7_6j0xe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sqpb4"]
+radius = 608.895
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_o1wdb"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_pqva3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_jgjwk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_eqsd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_fnn6w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pikdu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_6j0xe")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 30.0
+}]
+
+[node name="Bow" type="Area2D"]
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("1_vthey")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sqpb4")
+
+[node name="BowPivot" type="Marker2D" parent="."]
+
+[node name="Bow" type="AnimatedSprite2D" parent="BowPivot"]
+position = Vector2(71, -3)
+scale = Vector2(0.230897, 0.158)
+sprite_frames = SubResource("SpriteFrames_o1wdb")
+animation = &"shoot"
+flip_h = true
+
+[node name="ShootingPoint" type="Marker2D" parent="BowPivot/Bow"]
+unique_name_in_owner = true
+position = Vector2(155.914, 18.9873)
+scale = Vector2(4.33094, 6.32911)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.3
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

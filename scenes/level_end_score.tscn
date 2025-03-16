@@ -1,0 +1,153 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmb1heatou47p"]
+
+[ext_resource type="Script" path="res://scripts/level_end_score.gd" id="1_d613u"]
+
+[node name="LevelEndScore" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_d613u")
+
+[node name="Panel" type="Panel" parent="."]
+process_mode = 2
+custom_minimum_size = Vector2(500, 500)
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 3.0
+offset_top = -1.0
+offset_right = -1417.0
+offset_bottom = -581.0
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -66.5
+offset_right = 66.5
+offset_bottom = 69.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 50
+text = "Score"
+
+[node name="CenterContainer" type="CenterContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 30.0
+offset_right = 4.0
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/CenterContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Label" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Killed
+"
+
+[node name="KilledDots" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "....."
+
+[node name="killedLabel" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "000"
+
+[node name="KilledLabel2" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Damage Taken
+"
+
+[node name="KilledDots2" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "....."
+
+[node name="damageTakenLabel" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "000"
+
+[node name="KilledLabel3" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Damage Given
+"
+
+[node name="KilledDots3" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "....."
+
+[node name="damageGiven" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "000"
+
+[node name="KilledLabel4" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Coins Earned
+"
+
+[node name="KilledDots4" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "....."
+
+[node name="CoinsEarned" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "000"
+
+[node name="Label2" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+
+[node name="GridContainer2" type="GridContainer" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="KilledLabel" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "Points
+"
+
+[node name="KilledDots" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "....."
+
+[node name="PointsLabel" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 35
+text = "000"
+
+[node name="Label3" type="Label" parent="Panel/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+
+[node name="Button" type="Button" parent="Panel/CenterContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "OK"
+
+[connection signal="pressed" from="Panel/CenterContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]

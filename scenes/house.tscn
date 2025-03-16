@@ -1,0 +1,1319 @@
+[gd_scene load_steps=10 format=3 uid="uid://bcsm0fjx66oij"]
+
+[ext_resource type="Texture2D" uid="uid://b8vaoxfve3v5b" path="res://assets/backgrounds/placeholder-bg.png" id="1_nmevg"]
+[ext_resource type="Script" path="res://scripts/house.gd" id="1_r3yun"]
+[ext_resource type="PackedScene" uid="uid://bhrndphenp0fr" path="res://scenes/dialog_box.tscn" id="2_at8qy"]
+[ext_resource type="FontFile" uid="uid://cfy5v4mhhojwd" path="res://resources/ComicNote.ttf" id="3_cgvh0"]
+[ext_resource type="Texture2D" uid="uid://bfx46jw4jebrc" path="res://assets/backgrounds/dialogbox.png" id="4_wad7g"]
+[ext_resource type="PackedScene" uid="uid://bqhs88q4rsl01" path="res://scenes/settings.tscn" id="6_8qjvs"]
+[ext_resource type="Texture2D" uid="uid://33umalstuk4t" path="res://assets/backgrounds/button-placeholder.png" id="6_8uj17"]
+
+[sub_resource type="Theme" id="Theme_rmasd"]
+default_font_size = 30
+
+[sub_resource type="Theme" id="Theme_n5dix"]
+default_font_size = 20
+
+[node name="House" type="Control"]
+process_mode = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r3yun")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.873298, 0.873298, 0.873298, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_nmevg")
+
+[node name="Settings" parent="." instance=ExtResource("6_8qjvs")]
+visible = false
+offset_left = 1459.0
+offset_top = 624.0
+offset_right = 1776.0
+offset_bottom = 1058.0
+
+[node name="StatusBar" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 65.0
+texture = ExtResource("4_wad7g")
+expand_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="StatusBar"]
+layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 65.0
+theme_override_constants/separation = 70
+alignment = 1
+
+[node name="DayTime" type="HBoxContainer" parent="StatusBar/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="days" type="HBoxContainer" parent="StatusBar/HBoxContainer/DayTime"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatusBar/HBoxContainer/DayTime/days"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "Days:"
+
+[node name="DayLabel" type="Label" parent="StatusBar/HBoxContainer/DayTime/days"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "123"
+
+[node name="TimeSlot" type="HBoxContainer" parent="StatusBar/HBoxContainer/DayTime"]
+layout_mode = 2
+
+[node name="TimeSlotLabel" type="Label" parent="StatusBar/HBoxContainer/DayTime/TimeSlot"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "Afternoon"
+
+[node name="GirlStats" type="HBoxContainer" parent="StatusBar/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Trust" type="HBoxContainer" parent="StatusBar/HBoxContainer/GirlStats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatusBar/HBoxContainer/GirlStats/Trust"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "Trust:"
+
+[node name="TrustLabel" type="Label" parent="StatusBar/HBoxContainer/GirlStats/Trust"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "Distrustful"
+
+[node name="Mood" type="HBoxContainer" parent="StatusBar/HBoxContainer/GirlStats"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="StatusBar/HBoxContainer/GirlStats/Mood"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "Mood:"
+
+[node name="MoodLabel" type="Label" parent="StatusBar/HBoxContainer/GirlStats/Mood"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "Disappointed"
+
+[node name="Hunger" type="HBoxContainer" parent="StatusBar/HBoxContainer/GirlStats"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="StatusBar/HBoxContainer/GirlStats/Hunger"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "satiety:"
+
+[node name="HungerProgressBar" type="ProgressBar" parent="StatusBar/HBoxContainer/GirlStats/Hunger"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+value = 100.0
+
+[node name="PlayerStats" type="HBoxContainer" parent="StatusBar/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="STR" type="HBoxContainer" parent="StatusBar/HBoxContainer/PlayerStats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatusBar/HBoxContainer/PlayerStats/STR"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "STR:"
+
+[node name="STRLabel" type="Label" parent="StatusBar/HBoxContainer/PlayerStats/STR"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "123"
+
+[node name="DEX" type="HBoxContainer" parent="StatusBar/HBoxContainer/PlayerStats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatusBar/HBoxContainer/PlayerStats/DEX"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "DEX:"
+
+[node name="DEXLabel" type="Label" parent="StatusBar/HBoxContainer/PlayerStats/DEX"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "123"
+
+[node name="DEF" type="HBoxContainer" parent="StatusBar/HBoxContainer/PlayerStats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatusBar/HBoxContainer/PlayerStats/DEF"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "DEF:"
+
+[node name="DEFLabel" type="Label" parent="StatusBar/HBoxContainer/PlayerStats/DEF"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "123"
+
+[node name="SPD" type="HBoxContainer" parent="StatusBar/HBoxContainer/PlayerStats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatusBar/HBoxContainer/PlayerStats/SPD"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "SPD:"
+
+[node name="SPDLabel" type="Label" parent="StatusBar/HBoxContainer/PlayerStats/SPD"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "123"
+
+[node name="HP" type="HBoxContainer" parent="StatusBar/HBoxContainer/PlayerStats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatusBar/HBoxContainer/PlayerStats/HP"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "HP:"
+
+[node name="HPLabel" type="Label" parent="StatusBar/HBoxContainer/PlayerStats/HP"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "123"
+
+[node name="gold" type="HBoxContainer" parent="StatusBar/HBoxContainer/PlayerStats"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatusBar/HBoxContainer/PlayerStats/gold"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "Gold:"
+
+[node name="GoldLabel" type="Label" parent="StatusBar/HBoxContainer/PlayerStats/gold"]
+z_index = 755
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cgvh0")
+theme_override_font_sizes/font_size = 30
+text = "999999999"
+
+[node name="Shop" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+offset_left = 172.0
+offset_top = 92.0
+offset_right = 786.0
+offset_bottom = 689.0
+
+[node name="Shopping" type="Panel" parent="Shop"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop/Shopping"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/Shopping/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Shop/Shopping/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Shop"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/Shopping/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="WeaponBtn" type="Button" parent="Shop/Shopping/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Weapon"
+
+[node name="ArmorBtn" type="Button" parent="Shop/Shopping/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Armor"
+
+[node name="FoodBtn" type="Button" parent="Shop/Shopping/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Food
+"
+
+[node name="GiftBtn" type="Button" parent="Shop/Shopping/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Gift"
+
+[node name="PotionBtn" type="Button" parent="Shop/Shopping/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Potion"
+
+[node name="ExitShopBtn" type="Button" parent="Shop/Shopping/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Go Back"
+
+[node name="WeaponMenu" type="Panel" parent="Shop"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Shop/WeaponMenu"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 594.0
+offset_bottom = 574.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop/WeaponMenu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Shop - Weapons"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="WoodSBtn" type="Button" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Wood sword"
+
+[node name="StoneSBtn" type="Button" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Stone Sword"
+
+[node name="OreSBtn" type="Button" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Ore sword
+"
+
+[node name="IronSBtn" type="Button" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "iron sword"
+
+[node name="SilverSBtn" type="Button" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "silver sword"
+
+[node name="UltimaSBtn" type="Button" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Ultima sword"
+
+[node name="WoodBBtn" type="Button" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Wood Bow"
+
+[node name="StoneBBtn" type="Button" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Stone Bow"
+
+[node name="OreBBtn" type="Button" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Ore Bow
+"
+
+[node name="IronBBtn" type="Button" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "iron Bow"
+
+[node name="SilverBBtn" type="Button" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "silver Bow"
+
+[node name="UltimaBBtn" type="Button" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Ultima Bow"
+
+[node name="ExitWeaponBtn" type="Button" parent="Shop/WeaponMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Go Back"
+
+[node name="ArmorMenu" type="Panel" parent="Shop"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Shop/ArmorMenu"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 594.0
+offset_bottom = 574.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop/ArmorMenu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/ArmorMenu/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Shop/ArmorMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Shop - Armors"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/ArmorMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="WoodABtn" type="Button" parent="Shop/ArmorMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Wood set"
+
+[node name="StoneABtn" type="Button" parent="Shop/ArmorMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Stone set"
+
+[node name="OreABtn" type="Button" parent="Shop/ArmorMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Ore set
+"
+
+[node name="IronABtn" type="Button" parent="Shop/ArmorMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "iron set"
+
+[node name="SilverABtn" type="Button" parent="Shop/ArmorMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "silver set"
+
+[node name="UltimaABtn" type="Button" parent="Shop/ArmorMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Ultima set"
+
+[node name="ExitArmorBtn" type="Button" parent="Shop/ArmorMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Go Back"
+
+[node name="FoodMenu" type="Panel" parent="Shop"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Shop/FoodMenu"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 594.0
+offset_bottom = 574.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop/FoodMenu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/FoodMenu/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Shop/FoodMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Shop - Foods"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/FoodMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="RationBtn" type="Button" parent="Shop/FoodMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Militar Ration"
+
+[node name="CannedBtn" type="Button" parent="Shop/FoodMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Canned Food"
+
+[node name="FruitsBtn" type="Button" parent="Shop/FoodMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Fruits
+"
+
+[node name="CandiesBtn" type="Button" parent="Shop/FoodMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Candies"
+
+[node name="SnacksBtn" type="Button" parent="Shop/FoodMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Snacks"
+
+[node name="DecentBtn" type="Button" parent="Shop/FoodMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Decent Meal"
+
+[node name="HomeBtn" type="Button" parent="Shop/FoodMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Homemade meal"
+
+[node name="ExpensiveBtn" type="Button" parent="Shop/FoodMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "expensive meal"
+
+[node name="NobleBtn" type="Button" parent="Shop/FoodMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Noble Banquet
+"
+
+[node name="ExitFoodBtn" type="Button" parent="Shop/FoodMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Go Back"
+
+[node name="GiftMenu" type="Panel" parent="Shop"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Shop/GiftMenu"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 594.0
+offset_bottom = 574.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop/GiftMenu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/GiftMenu/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Shop/GiftMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Shop - Gifts"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/GiftMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="WoodenBtn" type="Button" parent="Shop/GiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Wooden Doll"
+
+[node name="MarblesBtn" type="Button" parent="Shop/GiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Marbles"
+
+[node name="CrayonBtn" type="Button" parent="Shop/GiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Crayon"
+
+[node name="RagBtn" type="Button" parent="Shop/GiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Rag doll
+"
+
+[node name="StoryBtn" type="Button" parent="Shop/GiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "storybook
+"
+
+[node name="ChessBtn" type="Button" parent="Shop/GiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "chess"
+
+[node name="WellBtn" type="Button" parent="Shop/GiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Well made doll"
+
+[node name="MagicSBtn" type="Button" parent="Shop/GiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Magicstation"
+
+[node name="ExitGiftBtn" type="Button" parent="Shop/GiftMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Go Back"
+
+[node name="PotionMenu" type="Panel" parent="Shop"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Shop/PotionMenu"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 594.0
+offset_bottom = 574.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop/PotionMenu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/PotionMenu/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Shop/PotionMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Shop - Potions"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/PotionMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="StrPotionBtn" type="Button" parent="Shop/PotionMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "strength Potion"
+
+[node name="DexPotionBtn" type="Button" parent="Shop/PotionMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Dexterity Potion"
+
+[node name="DefPotionBtn" type="Button" parent="Shop/PotionMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Defense Potion
+"
+
+[node name="SpdPotionBtn" type="Button" parent="Shop/PotionMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Speed Potion"
+
+[node name="HpPotionBtn" type="Button" parent="Shop/PotionMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Hp Potion"
+
+[node name="UltPotionBtn" type="Button" parent="Shop/PotionMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Ultima Potion"
+
+[node name="ExitPotionBtn" type="Button" parent="Shop/PotionMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Go Back"
+
+[node name="ItemDescPanel" type="Panel" parent="Shop"]
+visible = false
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.00489
+anchor_top = 0.221106
+anchor_right = 1.43485
+anchor_bottom = 0.435511
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Shop/ItemDescPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Shop/ItemDescPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="titleL" type="Label" parent="Shop/ItemDescPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+text = "Item Name"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="text1L" type="Label" parent="Shop/ItemDescPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Brief description"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="text2L" type="Label" parent="Shop/ItemDescPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Stat: +12"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="text3L" type="Label" parent="Shop/ItemDescPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Gold: 123"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="text4L" type="Label" parent="Shop/ItemDescPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 20
+text = "Owned: 99"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="ConfirmationDialog" type="ConfirmationDialog" parent="Shop"]
+title = "Are you sure?"
+position = Vector2i(0, 36)
+size = Vector2i(300, 164)
+min_size = Vector2i(300, 70)
+theme = SubResource("Theme_rmasd")
+dialog_text = "If you click ok time will pass"
+dialog_autowrap = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogBox" parent="CanvasLayer" instance=ExtResource("2_at8qy")]
+visible = false
+offset_left = 960.0
+offset_top = 700.0
+offset_right = 960.0
+offset_bottom = 700.0
+messages = Array[String](["-TUTORIAL-", "Greetings! The voice in your head is back, and this time, I’m going to teach you how to live your daily life.
+", "At the top of the screen, you’ll see statistics about your current life.", "First, there’s the number of days since you started raising the child and the current time  of the day.", "Next, you’ll find the status of your relationship with the child, including the trust level, her mood, and her hunger level.", "And on the right, you’ll find your own stats. STR (Strength) determines how hard your sword hits. DEX (Dexterity) affects how well you shoot your bow. DEF (Defense) measures how well you can tank a hit.", " SPD (Speed) determines your movement speed. HP (Health Points) represents your maximum health. Finally, you can see how many gold coins you have.To improve trust, you must talk to her, feed her well, and keep her mood high.", "To improve trust, you must talk to her, feed her well, and keep her mood high.", "To earn gold, you need to work defending the frontier. You can use the gold you earn to buy food, items, weapons, armor, and gifts.", "Now, let’s talk about the activities you can do. First, there’s eating, you should eat three times a day. You can eat once per time slot, and eating does not advance time.", "Working, shopping, and talking with the child, however, do advance time. You have three time slots: morning, afternoon and evening.", "That’s the gist of your daily grind: work, earn income, shop, eat, talk…", "Oh! I almost forgot, improving the child’s trust will unlock more dialogue. That’s it! Have fun playing!", "-END-", "-SMALL TALK 1-", "You talk about breakfast, the weather, and what she would like to have for lunch.", "-END-", "-SMALL TALK 2-", "You talk about lunch, the weather, and what she would like to have for dinner.", "-END-", "-SMALL TALK 3-", "You talk about dinner, the weather, and ask what she did during the day and what she wants to eat for breakfast.", "-END-", "-SLEEP-", "You go to rest", "-END-", "-PLAY 1-
+", "You play hide-and-seek with the girl, more like hide-and-wait, because you couldn’t find her and had to wait for her to return. You try your best to make her reveal her hiding spot, but the girl remains resolute and doesn’t spill the secret.", "-END-", "-PLAY 2-", "You play tag with the girl. Since you are far faster than her and she doesn’t seem to be giving up anytime soon, you start slowing down and let her catch you.", "-END-", "-PLAY 3-", "You play pretend fighting with the girl, with her as the valiant knight and you as the resilient outlaw. With each swing, the valiant knight brings the resilient outlaw to its knees and saves the day, rescuing the princess from the outlaw’s clutches, or so the story goes.", "-END-", "-PLAY 4-", "You play pretend life with the girl, where she is the prettiest, wealthiest, benevolent princess and you are her esteemed, just, and valiant knight. After having a tea party with the poor villagers.", "it’s time for the valiant knight to guide the benevolent princess back to the castle. On the road, many dangers lie ahead, but each and every one is defeated by the valiant knight. Upon arriving at the castle, the princess is finally safe, and the knight may finally rest.", "-END-", "-END OF VER-
+", "This is the end of this version.", "-END-", "-NO TRUST-", "The girl doesn’t trust you enough to talk about herself.", "-END-", "-MARBLES-", "When you gave her the shining round stones, the girl stared at them in awe.", "Are those jewels?", "No, they are marbles. Its a toy.", "Toy? The girl stared at the marbles in confusion. How do you play with them?", "Well… that's quite the question. I've never played with them before, so I don't know.", "After hearing your answer, the girl kept staring at the marbles, deep in thought.", "I KNOW I KNOW She suddenly got excited and began assembling them on the floor, placing each one with precision and amazement as she went on…", "After a while, you saw her finished work, she had drawn a castle using the marbles.", "Isn't it pretty? This is the Marble Castle, home of the Marble Princess.", "Yeah, quite the luxurious castle indeed.", "She smiled and started entering her own world, talking about the Princess Marble and Prince Pebble in the Land of Fables… and as time went on, her words became harder to follow. Eventually, you couldn’t understand her anymore and ended up dozing off.", "-END-", "-FEAR GIFT-", "The girl is afraid of you; she doesn’t have the courage to accept your gift.", "-END-", "-MEEK GIFT-", "The girl meekly accepts the gift.", "-END-", "-HAPPY GIFT-", "The girl happily accepts the gift.", "-END-", "-BEST GIFT-", "With a big smile and a joyful leap, the girl overjoyedly accepts the gift.", "-END-", "-CHESS-", "You give the girl a well-carved wooden chessboard with decorated pieces, a fine work of craftsmanship, something made for future generals or simply for nobles to play with when bored.", "I know, I know what this is! It's called… uhm… che… che… cheeseboat?", "Almost. It’s a chessboard. You place the human pieces on one side and the monster pieces on the other, and following the rules of chess, you battle against another player.", "I KNEW THAT! the girl exclaims, showing signs of embarrassment for getting the name wrong. She quickly picks up some pieces.", "So, it’s a game about war, huh…", "Holding a monster piece in one hand and a human piece in the other, she gives a sad look at the board.", "Well, it is… but nothing is set in stone. We can always make our own rules.", "And in a stroke of genius, the girl's eyes glimmer.", "Yeah! I know a much more fun game we can play with the chessboard!", "She begins placing the pieces randomly on the board, most of them in pairs. You just stare, wondering what she’s up to.", "Annnnd, it’s ready! The Chessball!", "Chessball?", "Yes! A ballroom with chess… Chessball!", "I see… You still can’t quite grasp what she wants to do.", "Let the Ballchess begin! she declares, then starts moving the pieces as if they are dancing, talking, and eating.", "(Wasn’t it Chessball? Well, no matter…)", "You pick up some pieces and start following her example. Knight, Rook, Bishop, Queen, King, Pawn, human, monster—it doesn’t matter. Every piece is having fun, dancing with each other.", "After a while, the ball ends, the chessboard is a mess, and the girl is happy. That’s all that matters.", "-END-", "-RAG DOLL-", "You give the girl a simple ragdoll, made from worn-out rags, a very poorly made doll, indeed. But as soon as the girl sees it, she is overjoyed.", "A Rag Princess! What a lovely lady you have brought to me. As expected of the valiant knight!", "Yes, milady. Here she is, the princess was saved from the clutches of an evil witch who wanted to sell her to bandits. But I brandished my gold coins and slashed away her fate of becoming a slave. The Rag Princess is free!", "You did well, my knight. You may leave the Rag Princess with me, I will take care of her from now on. Go and guard the entrance while I bathe her. No one shall see the scars of her imprisonment!", "As you wish, milady.", "Like a royal guard, you stand motionless at the door of the restroom, where the Rag Queen carefully washes the Rag Princess’s dirtied rags. After a while, the queen opens the doors.", "Brave knight, now you must escort us into the dangerous wilderness outside, for we must sunbathe in order to dry the rags of the Rag Princess.", "But of course, milady.", "You begin escorting them outside, more prepared for battle than when guarding the frontier from monsters. You guide them to the drying rack.", "Help! An evildoer has arrived!", "You swiftly turn around to find the queen shielding the Rag Princess with her life. Nearby, a ferocious feline, a black cat, lurks menacingly. Surely, the evil witch must have sent it to imprison the Rag Princess once again!", "UHAAAAA!", "With a war cry, you brandish your mighty stick and send the cat fleeing in terror. And so, the day is saved.", "-END-", "-CRAYON-", "You give the girl a set of crayons and some scrolls for her to draw on.", "La la la~ Rain in my bow is rainbow~ Cray on my wall is crayon~", "As she sings this nonsensical tune, she colors the walls of your house with bright, chaotic strokes.", "You… I gave you the scrolls for a reason, you know.", "Sensing your slight annoyance, she flinches and quickly stops painting the walls.", "I'm sorry… I-I thought you would like… to have a new painting…", "…Whatever. Do as you wish.", "With a sigh, you turn away and begin sharpening your weapons.", "The girl hesitates for a moment but then continues her remodeling work.", "Sun high in sky~ Out of my sight~ Be bright~", "Her painting and singing go on, filling the house with colors and melodies.", "-END-", "-STORYBOOK-", "Hey, hey! Can you read it for me, please?", "Of course. Let me just light a candle.", "By the soft glow of the candle, you begin reading the story to her.", "Once upon a time, in a far, far away continent, there was a kingdom, the Kingdom of Kings. Every citizen was a king.", "Being kings, no one followed orders. They only gave orders, pointing fingers at each other.", "You! You ate my pudding! Guards, I order you to arrest him!", "No, you liar! Guards, arrest this blasphemous liar!", "But there were no guards, only kings. So, nothing ever happened. It was an endless cycle of bickering and giving orders, without anything ever getting done.", "The end.", "What a weird story, mister. What does it mean?", "Well… to tell the truth, I didn’t understand it either.", "Hmmm… uhm… hmmmm…", "You could almost see smoke coming out of the girl's ears as she struggled to find an answer.", "Maybe… they were lonely.", "Lonely?", "Yeah! They were all lonely kings, trying to be friends with each other. But they didn’t know how to be friends, so they just shouted at one another.", "Maybe you’re right… maybe they were lonely.", "As you say that, you start to wonder, why did you start raising this child in the first place?", "-END-", "-MAGICSTATION-", "Magicstation, the latest magic toy crafted by the finest wizards of the court. The ultimate form of entertainment, destined for noble children. And today, you brought one of these to the girl. However, she still doesn’t understand the greatness of this toy. Then again, neither do you, since you bought it on a whim.", "This weird machine… how do we use it?", "Hmm… The thing is, I don’t really know either. I heard you have to set it up in an unlit room and… what was it again? Oh, right. You have to chant: \"Valve is the Steam of the future.\"", "Hmm… And what will happen?", "Well… let’s find out.", "You place the strange rectangular device in the middle of the room, close all doors and windows, and extinguish the candles.", "Okay, now we just need to sa—", "VALVE IS THE STEAM OF THE FUTURE!", "The girl enthusiastically recites the chant, and the unthinkable happens. The box begins to emit light, and these lights form an illusory world around you. Both of you stand there, stunned. Then, you notice something strange, energy flows through your hands.", "When you move left, the world shifts left. When you jump, the entire world trembles. A truly powerful illusion device.", "Woah! Look, look, unicorns!", "As the girl exclaims, unicorns appear beneath her. She starts riding one in place. The unicorn itself doesn’t move, but the world around her shifts, making it seem as if she’s galloping through a vast landscape. That is, until everything suddenly shuts down.", "WHAT?! What happened? My precious pretty little cute unicorn…!", "Hmm… The manual says you need to charge it with magic, and it lasts about an hour. Looks like it came with little to no charge.", "Then let’s charge it! I need to ride prelicunicorn again…", "Well… the thing is, neither of us has magic power to charge it.", ".............", "-END-", "-WOODEN DOLL-", "You saw a wooden doll carved by a local peasant and thought the girl might like it, so you gave it to her. It’s a very simple wooden doll, with little to no detail and roughly carved clothes.", "The girl gives a shy nod as thanks, picks up the doll, and starts analyzing it.", "Why doesn’t he have a nose? Did he not lie enough?", "It seems she thinks this doll is the same as the famous tale of the lying wooden boy.", "I think even if he could lie, his nose wouldn’t grow.", "Why?", "Well… because wooden dolls don’t grow.", "Why?", "Uhmm… because they just don’t.", "Sensing you've reached the end of your reasoning, the girl gives up on asking more questions and starts playing with the doll.", "-END-", "-WELL MADE DOLL-", "You gave the girl a very well-made doll. The dress resembles noble clothing, and her appearance is highly detailed, almost human-like.", "Woooo! A little princess! Thanks for bringing the princess home, knight in armor!", "You nod in response and proceed to repair your armor and sharpen your weapons, while the girl starts creating a fantasy kingdom.", "Princess Dollita, your dress is beautiful today, as always. Do you want to go to the ball?", "Oh my, Prince Potato, you are as yellow and tasty as always! Of course I do. Let’s use my royal ride, Mister Magic Dust Cloth. Just sit on top of it, and through magic, it will fly us to the ball!", "As she places both dolls on top of the cloth, they start flying toward the kitchen. And with that, you can no longer hear their tale.", "-END-", "-BIRTHDAY-", "It’s been a while since you started living together. At first, taking care of someone other than yourself was something you had never done before, but the child is very independent, so you didn’t have much trouble. She’s always helping with tasks such as cleaning, organizing, and even a little cooking.", "Mister Knight, how old are you?", "My age, huh? Uhm… what was it again…? I’ve never paid much attention to my birthday, but I was born in 4358, so I guess my age should be around 30.", "Woow, I thought you were older!", "(Ouch!) Why? I’m always training and keeping up with my diet…", "Well, you have such a serious face, a lot of scars, and, um… you have some white hair, so I thought you were older…", "But can you guess how old I am?", "Uhm… like 10 years or something?", "Bu-buu! You got it wrong! I’m…", "She starts counting on her fingers. When she runs out of fingers on her hands, she moves to her toes.", "TWELVE! …Or maybe ELEVEN! I don’t know the exact day I was born…", "I see. Same as me.", "Hehe… I know! I had the greatest idea! Let’s make today our birthday. So, as of today, I’m twelve, and you’re thirty-one! And for the party, hmm… I’ll make the decorations, and you’ll bake a cake!", "A cake? Me? (I’m not sure if I can make one…)", "Yes! While you do that, I’ll decorate the house!", "You did your best to bake a cake for the first time. After a while, what could barely be called a cake, a mere prototype, or perhaps something even less than that, was finally ready. Regardless, the cake was done, so you headed to the living room.", "There, you found the girl finishing the decorations. The walls were full of drawings and ribbons, the chairs were also wrapped in ribbons, and flower petals were scattered around. On top of the table sat a bouquet of wildflowers.", "Wow, you did a fine job.", "Hehe, it wasn’t easy, but it was worth it! And the cake? Is it ready?", "And so, you placed the so-called cake on the table. The girl glanced back and forth between you and the cake before finally accepting reality and sitting down.", "Well… let’s eat it! It’s not the prettiest, but it might be the tastiest!", "And so, both of you sat down. You cut a slice for yourself and the girl, and at the same time, both of you took a bite.", "This was the end of your long, arduous journey. You had defeated many foes, slain powerful enemies, only to be bested by a cake in the end. As these thoughts ran through your mind, you sat there, staring at nothing, as if life had already left your body.", "This wasn’t a cake. It was a lethal poison. A curse disguised as dessert. A monstrosity created by your own hands. As your life flashed before your eyes, you suddenly remembered, the girl had also eaten the cursed thing! That thought alone brought you back to reality.", "So, did you like it?", "YES! It’s delicious! she said, eating to her heart’s content.", "…Something isn’t right. Are you both eating the same dark matter? Well, whatever is happening, if she’s enjoying this culinary atrocity, so be it.", "And so, you struggled to finish your slice while the girl happily asked for seconds. Maybe her monster genes made her strong… That was the only explanation you could come up with for the situation.", "-END-"])
+
+[node name="Activities" type="Node" parent="."]
+
+[node name="Activities" type="VBoxContainer" parent="Activities"]
+offset_left = 14.0
+offset_top = 539.0
+offset_right = 128.0
+offset_bottom = 1063.0
+theme_override_constants/separation = 15
+
+[node name="WorkButton" type="TextureButton" parent="Activities/Activities" groups=["Buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("6_8uj17")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Activities/Activities/WorkButton"]
+layout_mode = 1
+offset_right = 87.0
+offset_bottom = 40.0
+theme_override_font_sizes/font_size = 40
+text = "Work"
+
+[node name="ShopButton" type="TextureButton" parent="Activities/Activities" groups=["Buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("6_8uj17")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Activities/Activities/ShopButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 40
+text = "Shop"
+
+[node name="TalkButton" type="TextureButton" parent="Activities/Activities" groups=["Buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("6_8uj17")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Activities/Activities/TalkButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 40
+text = "Talk"
+
+[node name="EatButton" type="TextureButton" parent="Activities/Activities" groups=["Buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("6_8uj17")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Activities/Activities/EatButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 40
+text = "Eat"
+
+[node name="Activities2" type="VBoxContainer" parent="Activities"]
+offset_left = 1787.0
+offset_top = 539.0
+offset_right = 1901.0
+offset_bottom = 1063.0
+theme_override_constants/separation = 15
+
+[node name="ItemsButton" type="TextureButton" parent="Activities/Activities2" groups=["Buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("6_8uj17")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Activities/Activities2/ItemsButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 40
+text = "Items"
+
+[node name="SleepButton" type="TextureButton" parent="Activities/Activities2" groups=["Buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("6_8uj17")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Activities/Activities2/SleepButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 40
+text = "Sleep"
+
+[node name="MenuButton" type="TextureButton" parent="Activities/Activities2" groups=["Buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("6_8uj17")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Activities/Activities2/MenuButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 40
+text = "Menu"
+
+[node name="SettingsButton" type="TextureButton" parent="Activities/Activities2" groups=["Buttons"]]
+layout_mode = 2
+texture_normal = ExtResource("6_8uj17")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="Activities/Activities2/SettingsButton"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 16.0
+theme_override_font_sizes/font_size = 40
+text = "COnfig"
+
+[node name="Work" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 172.0
+offset_top = 92.0
+offset_right = 786.0
+offset_bottom = 689.0
+
+[node name="Places" type="Panel" parent="Work"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Work/Places"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Work/Places/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Work/Places/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Places"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Work/Places/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="ForestBtn" type="Button" parent="Work/Places/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Forest"
+
+[node name="DungeonBtn" type="Button" parent="Work/Places/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Dungeon"
+
+[node name="CityBtn" type="Button" parent="Work/Places/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "City
+"
+
+[node name="CastleBtn" type="Button" parent="Work/Places/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Castle"
+
+[node name="ExitWorkBtn" type="Button" parent="Work/Places/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Go Back"
+
+[node name="Talk" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 172.0
+offset_top = 92.0
+offset_right = 786.0
+offset_bottom = 689.0
+
+[node name="Talking" type="Panel" parent="Talk"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Talk/Talking"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Talk/Talking/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Talk/Talking/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Discuss"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Talk/Talking/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="lifeBtn" type="Button" parent="Talk/Talking/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Ask About Life"
+
+[node name="smallBtn" type="Button" parent="Talk/Talking/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Small Talk"
+
+[node name="playBtn" type="Button" parent="Talk/Talking/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Play With
+"
+
+[node name="giveBtn" type="Button" parent="Talk/Talking/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Give Gift"
+
+[node name="ExitTalkBtn" type="Button" parent="Talk/Talking/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Go Back"
+
+[node name="GiveGiftMenu" type="Panel" parent="Talk"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Talk/GiveGiftMenu"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 594.0
+offset_bottom = 574.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Talk/GiveGiftMenu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Talk/GiveGiftMenu/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Talk/GiveGiftMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Shop - Gifts"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Talk/GiveGiftMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="GiveWoodenBtn" type="Button" parent="Talk/GiveGiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Wooden Doll"
+
+[node name="GiveMarblesBtn" type="Button" parent="Talk/GiveGiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Marbles"
+
+[node name="GiveCrayonBtn" type="Button" parent="Talk/GiveGiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Crayon"
+
+[node name="GiveRagBtn" type="Button" parent="Talk/GiveGiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Rag doll
+"
+
+[node name="GiveStoryBtn" type="Button" parent="Talk/GiveGiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "storybook
+"
+
+[node name="GiveChessBtn" type="Button" parent="Talk/GiveGiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "chess"
+
+[node name="GiveWellBtn" type="Button" parent="Talk/GiveGiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Well made doll"
+
+[node name="GiveMagicSBtn" type="Button" parent="Talk/GiveGiftMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Magicstation"
+
+[node name="ExitGiveGiftBtn" type="Button" parent="Talk/GiveGiftMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Go Back"
+
+[node name="Eat" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 172.0
+offset_top = 92.0
+offset_right = 786.0
+offset_bottom = 689.0
+
+[node name="EatMenu" type="Panel" parent="Eat"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Eat/EatMenu"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 594.0
+offset_bottom = 574.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Eat/EatMenu/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Eat/EatMenu/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="Eat/EatMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Foods"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Eat/EatMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="EatRationBtn" type="Button" parent="Eat/EatMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Militar Ration"
+
+[node name="EatCannedBtn" type="Button" parent="Eat/EatMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Canned Food"
+
+[node name="EatFruitsBtn" type="Button" parent="Eat/EatMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Fruits
+"
+
+[node name="EatCandiesBtn" type="Button" parent="Eat/EatMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Candies"
+
+[node name="EatSnacksBtn" type="Button" parent="Eat/EatMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Snacks"
+
+[node name="EatDecentBtn" type="Button" parent="Eat/EatMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Decent Meal"
+
+[node name="EatHomeBtn" type="Button" parent="Eat/EatMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Homemade meal"
+
+[node name="EatExpensiveBtn" type="Button" parent="Eat/EatMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "expensive meal"
+
+[node name="EatNobleBtn" type="Button" parent="Eat/EatMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Noble Banquet
+"
+
+[node name="ExitEatBtn" type="Button" parent="Eat/EatMenu/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Go Back"
+
+[node name="EndOfContent" type="AcceptDialog" parent="."]
+title = "Sorry"
+position = Vector2i(0, 36)
+size = Vector2i(120, 120)
+theme = SubResource("Theme_n5dix")
+dialog_text = "This isn't implemented yet"
+dialog_autowrap = true
+
+[connection signal="pressed" from="Shop/Shopping/MarginContainer/VBoxContainer/ExitShopBtn" to="." method="_on_exit_shop_btn_pressed"]
+[connection signal="confirmed" from="Shop/ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]
+[connection signal="dialog_finished" from="CanvasLayer/DialogBox" to="." method="_on_dialog_box_dialog_finished"]
+[connection signal="dialog_running" from="CanvasLayer/DialogBox" to="." method="_on_dialog_box_dialog_running"]
+[connection signal="pressed" from="Activities/Activities/WorkButton" to="." method="_on_work_button_pressed"]
+[connection signal="pressed" from="Activities/Activities/ShopButton" to="." method="_on_shop_button_pressed"]
+[connection signal="pressed" from="Activities/Activities/TalkButton" to="." method="_on_talk_button_pressed"]
+[connection signal="pressed" from="Activities/Activities/EatButton" to="." method="_on_eat_button_pressed"]
+[connection signal="pressed" from="Activities/Activities2/ItemsButton" to="." method="_on_sleep_button_pressed"]
+[connection signal="pressed" from="Activities/Activities2/SleepButton" to="." method="_on_sleep_button_pressed"]
+[connection signal="pressed" from="Activities/Activities2/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="Activities/Activities2/SettingsButton" to="." method="_on_settings_button_pressed"]
+[connection signal="pressed" from="Work/Places/MarginContainer/VBoxContainer/ExitWorkBtn" to="." method="_on_exit_work_btn_pressed"]
+[connection signal="pressed" from="Talk/Talking/MarginContainer/VBoxContainer/VBoxContainer/lifeBtn" to="." method="_on_life_btn_pressed"]
+[connection signal="pressed" from="Talk/Talking/MarginContainer/VBoxContainer/VBoxContainer/smallBtn" to="." method="_on_small_btn_pressed"]
+[connection signal="pressed" from="Talk/Talking/MarginContainer/VBoxContainer/VBoxContainer/playBtn" to="." method="_on_play_btn_pressed"]
+[connection signal="pressed" from="Talk/Talking/MarginContainer/VBoxContainer/VBoxContainer/giveBtn" to="." method="_on_give_btn_pressed"]
+[connection signal="pressed" from="Talk/Talking/MarginContainer/VBoxContainer/ExitTalkBtn" to="." method="_on_exit_talk_btn_pressed"]
+[connection signal="pressed" from="Talk/GiveGiftMenu/ScrollContainer/MarginContainer/VBoxContainer/ExitGiveGiftBtn" to="." method="_on_exit_give_gift_btn_pressed"]
+[connection signal="pressed" from="Eat/EatMenu/ScrollContainer/MarginContainer/VBoxContainer/ExitEatBtn" to="." method="_on_exit_eat_btn_pressed"]
