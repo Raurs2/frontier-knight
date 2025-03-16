@@ -1,7 +1,6 @@
 extends CharacterBody2D
 
 @onready var player = get_tree().get_first_node_in_group("Players").get_child(0)
-@onready var slime: Node2D = %Slime
 
 const MAX_HEALTH = 100
 const DAMAGE_GIVEN = 15
@@ -12,7 +11,7 @@ var speed
 func _ready() -> void:
 	%Slime.play_walk()
 	randomize()
-	slime.modulate = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))
+	%Slime.modulate = Color(randf_range(0, 1), randf_range(0, 1), randf_range(0, 1))
 	speed = randf_range(280.0, 320.0)
 var health = MAX_HEALTH
 
