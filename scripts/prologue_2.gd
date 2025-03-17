@@ -2,10 +2,12 @@ extends Control
 
 @onready var background: TextureRect = $background
 @onready var dialog_box: DialogBox = $DialogBox
+@onready var bgm: Bgm = $Bgm
 
 func _ready() -> void:
 	get_tree().paused = false
 	dialog_box.is_dialog_started = true
+	bgm.play_audio(1)
 
 func _process(delta: float) -> void:
 		

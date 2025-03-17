@@ -9,6 +9,8 @@ class_name DialogBox
 var dialog_index = 0
 var is_dialog_started = false
 var first_dialog = true
+var is_speaking = false
+var tween: Tween
 
 signal dialog_running
 signal dialog_finished
@@ -21,23 +23,33 @@ func _process(delta: float) -> void:
 		visible = true
 		load_dialog()
 		first_dialog = false
-		#get_tree().paused = true
 	elif is_dialog_started:
 		emit_signal("dialog_running")
-		next_indicator.visible = not get_tree().get_processed_tweens()
+		next_indicator.visible = not is_speaking
+		
 		if Input.is_action_just_pressed('action'):
-			load_dialog()
+			if is_speaking:
+				finish_text_animation()
+			else:
+				load_dialog()
 
 
 func load_dialog():
 	if dialog_index < messages.size() and messages[dialog_index] != '-END-':
 		rich_text_label.text = messages[dialog_index]
 		rich_text_label.visible_ratio = 0
+		var len = rich_text_label.text.length()
+		var text_speed = len * 0.018
 		
-		var tween = get_tree().create_tween()
+		if tween and tween.is_running():
+			tween.kill()
+			
+		tween = get_tree().create_tween()
 		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-		tween.tween_property(rich_text_label, 'visible_ratio', 1, 1)
+		tween.tween_property(rich_text_label, 'visible_ratio', 1, text_speed)
+		tween.tween_callback(on_text_finished)
 		
+		is_speaking = true
 		dialog_index += 1
 		
 	else:
@@ -45,5 +57,12 @@ func load_dialog():
 		is_dialog_started = false
 		emit_signal("dialog_finished")
 		visible = false
-		#get_tree().paused = false
-		#queue_free()
+
+func on_text_finished():
+	is_speaking = false
+
+func finish_text_animation():
+	if tween and tween.is_running():
+		tween.kill()
+	rich_text_label.visible_ratio = 1
+	is_speaking = false

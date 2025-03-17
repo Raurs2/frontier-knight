@@ -11,6 +11,13 @@ size = Vector2(61.1022, 65.7484)
 position = Vector2(-15, -444)
 texture = ExtResource("1_jryqn")
 
+[node name="Tree2" type="Sprite2D" parent="Tree2"]
+modulate = Color(1, 1, 1, 0.498039)
+position = Vector2(63.26, -58.37)
+rotation = 0.123317
+scale = Vector2(0.949968, 1.12647)
+texture = ExtResource("1_jryqn")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(12.9154, -22)
 scale = Vector2(3.53229, 0.897143)

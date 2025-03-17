@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @onready var player = get_tree().get_first_node_in_group("Players").get_child(0)
 
-const MAX_HEALTH = 100
+const MAX_HEALTH = 80
 const DAMAGE_GIVEN = 15
 
 var bow_damage = SaveManager.stats.player_stats['dex']
@@ -36,4 +36,4 @@ func take_damage(weapon: String):
 		get_parent().add_child(smoke)
 		smoke.global_position = global_position
 		SaveManager.stats.kill_count += 1
-		SaveManager.stats.gold += 3
+		SaveManager.stats.coins_earned += 4

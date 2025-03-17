@@ -68,6 +68,7 @@ text = "Sound"
 
 [node name="SoundBar" type="HScrollBar" parent="Panel/CenterContainer/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
+value = 75.0
 
 [node name="VBoxContainer6" type="VBoxContainer" parent="Panel/CenterContainer/VBoxContainer"]
 layout_mode = 2
@@ -79,6 +80,7 @@ text = "Music"
 
 [node name="MusicBar" type="HScrollBar" parent="Panel/CenterContainer/VBoxContainer/VBoxContainer6"]
 layout_mode = 2
+value = 100.0
 
 [node name="VBoxContainer5" type="VBoxContainer" parent="Panel/CenterContainer/VBoxContainer"]
 layout_mode = 2

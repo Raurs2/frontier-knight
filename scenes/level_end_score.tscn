@@ -103,7 +103,7 @@ text = "000"
 [node name="KilledLabel4" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
-text = "Coins Earned
+text = "Gold Earned
 "
 
 [node name="KilledDots4" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer"]
@@ -127,15 +127,17 @@ columns = 3
 [node name="KilledLabel" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
-text = "Points
+text = "Well Done
 "
 
 [node name="KilledDots" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer2"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "....."
 
 [node name="PointsLabel" type="Label" parent="Panel/CenterContainer/VBoxContainer/GridContainer2"]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 35
 text = "000"

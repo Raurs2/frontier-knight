@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bcsm0fjx66oij"]
+[gd_scene load_steps=11 format=3 uid="uid://bcsm0fjx66oij"]
 
 [ext_resource type="Texture2D" uid="uid://b8vaoxfve3v5b" path="res://assets/backgrounds/placeholder-bg.png" id="1_nmevg"]
 [ext_resource type="Script" path="res://scripts/house.gd" id="1_r3yun"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bfx46jw4jebrc" path="res://assets/backgrounds/dialogbox.png" id="4_wad7g"]
 [ext_resource type="PackedScene" uid="uid://bqhs88q4rsl01" path="res://scenes/settings.tscn" id="6_8qjvs"]
 [ext_resource type="Texture2D" uid="uid://33umalstuk4t" path="res://assets/backgrounds/button-placeholder.png" id="6_8uj17"]
+[ext_resource type="PackedScene" uid="uid://bjrtnhm6q574e" path="res://scenes/bgm.tscn" id="8_8g0xe"]
 
 [sub_resource type="Theme" id="Theme_rmasd"]
 default_font_size = 30
@@ -1296,6 +1297,8 @@ size = Vector2i(120, 120)
 theme = SubResource("Theme_n5dix")
 dialog_text = "This isn't implemented yet"
 dialog_autowrap = true
+
+[node name="Bgm" parent="." instance=ExtResource("8_8g0xe")]
 
 [connection signal="pressed" from="Shop/Shopping/MarginContainer/VBoxContainer/ExitShopBtn" to="." method="_on_exit_shop_btn_pressed"]
 [connection signal="confirmed" from="Shop/ConfirmationDialog" to="." method="_on_confirmation_dialog_confirmed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://ogik4s70pgwl"]
+[gd_scene load_steps=11 format=3 uid="uid://ogik4s70pgwl"]
 
 [ext_resource type="Script" path="res://scripts/slime.gd" id="1_ejp8g"]
 [ext_resource type="Texture2D" uid="uid://doe06kpxco2ju" path="res://assets/enemies/slime body.png" id="2_rmtkr"]
+[ext_resource type="Texture2D" uid="uid://ccmskio3guhw5" path="res://assets/enemies/shadow.png" id="2_wsaym"]
 [ext_resource type="Texture2D" uid="uid://xct2nfsmougr" path="res://assets/enemies/slime face.png" id="3_eyrg6"]
 [ext_resource type="Texture2D" uid="uid://dp8pdlf2gf60g" path="res://assets/enemies/slime hurt face.png" id="4_mf4tq"]
 
@@ -188,6 +189,12 @@ _data = {
 [node name="Slime" type="Node2D"]
 scale = Vector2(0.264088, 0.264088)
 script = ExtResource("1_ejp8g")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.227451)
+position = Vector2(0, 136.318)
+scale = Vector2(2.02354, 2.13518)
+texture = ExtResource("2_wsaym")
 
 [node name="Body" type="Marker2D" parent="."]
 

@@ -115,6 +115,7 @@ extends Control
 @onready var sleep_button: TextureButton = $Activities/Activities2/SleepButton
 @onready var items_button: TextureButton = $Activities/Activities2/ItemsButton
 @onready var menu_button: TextureButton = $Activities/Activities2/MenuButton
+@onready var bgm: Bgm = $Bgm
 
 var button_map_give
 var button_map_eat
@@ -123,6 +124,7 @@ const BASE_PRICE = 100
 const BASE_STAT_UP = 10
 
 func _ready() -> void:
+	bgm.play_audio(8)
 	time_slot = SaveManager.stats.day_time
 	
 	#entering menus shop
@@ -381,6 +383,7 @@ func choose_dialogue(index: int):
 	dialog_box.dialog_index = index
 	
 func _on_work_button_pressed() -> void:
+	ButtonSound.play_click_sound()
 	if work.is_visible_in_tree():
 		work.visible = false
 		for button in get_tree().get_nodes_in_group('Buttons'):
@@ -392,16 +395,19 @@ func _on_work_button_pressed() -> void:
 		work_button.disabled = false
 
 func _on_shop_button_pressed() -> void:
+	ButtonSound.play_click_sound()
 	shopping.visible = true
 	for button in get_tree().get_nodes_in_group('Buttons'):
 		button.disabled = true
 
 func _on_talk_button_pressed() -> void:
+	ButtonSound.play_click_sound()
 	talk.visible = true
 	for button in get_tree().get_nodes_in_group('Buttons'):
 		button.disabled = true
 
 func _on_eat_button_pressed() -> void:
+	ButtonSound.play_click_sound()
 	if eat.is_visible_in_tree():
 		eat.visible = false
 		for button in get_tree().get_nodes_in_group('Buttons'):
@@ -421,9 +427,11 @@ func sleep():
 	SaveManager.save_game()
 
 func _on_sleep_button_pressed() -> void:
+	ButtonSound.play_click_sound()
 	sleep()
 
 func _on_menu_button_pressed() -> void:
+	ButtonSound.play_click_sound()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	 
 func _on_dialog_box_dialog_finished() -> void:
@@ -436,6 +444,7 @@ func _on_dialog_box_dialog_running() -> void:
 
 
 func _on_settings_button_pressed() -> void:
+	ButtonSound.play_click_sound()
 	if settings.is_visible_in_tree():
 		settings.visible = false
 		for button in get_tree().get_nodes_in_group('Buttons'):
@@ -447,9 +456,11 @@ func _on_settings_button_pressed() -> void:
 		settings_button.disabled = false
 		
 func _on_exit_shop_btn_pressed() -> void:
+	ButtonSound.play_click_sound()
 	confirmation_dialog.popup_centered()
 	
 func _on_confirmation_dialog_confirmed() -> void:
+	ButtonSound.play_click_sound()
 	time_slot += 1
 	shopping.visible = false
 	for button in get_tree().get_nodes_in_group('Buttons'):
@@ -460,6 +471,7 @@ func _toggle_menu(menu: Control, show: bool) -> void:
 	menu.visible = show
 
 func _on_give_item_btn_pressed(item: String, trust: int, mood: int):
+	ButtonSound.play_click_sound()
 	if SaveManager.stats.girl_stats['trust'] > 100 and SaveManager.stats.girl_stats['mood'] > 100:
 		if SaveManager.stats.events[item] == false:
 			SaveManager.stats.events[item] = true
@@ -509,6 +521,7 @@ func _on_give_item_btn_mouse_entered(button: Button, title: String, trust: Strin
 	show_desc(button, title, trust, mood, owned, '')
 
 func _on_eat_btn_pressed(item: String, hunger: int, mood: int):
+	ButtonSound.play_click_sound()
 	if SaveManager.stats.inventory.has(item) and hunger_progress_bar.value < 100:
 		SaveManager.stats.remove_item(item)
 		girl_stat_change(0, mood, hunger)
@@ -523,6 +536,7 @@ func _on_eat_btn_mouse_entered(button: Button, title: String, satiety: String, m
 	show_desc(button, title, satiety, mood, owned, '')
 
 func _on_item_btn_pressed(item_name: String, price: int, stat_type: String, stat_value: int, max_amount: int) -> void:
+	ButtonSound.play_click_sound()
 	SaveManager.stats.add_item(item_name, price, stat_type, stat_value, max_amount)
 	if SaveManager.stats.inventory.has(item_name):
 		text_3l.text = 'Owned: %d' % SaveManager.stats.inventory[item_name].quantity
@@ -537,6 +551,7 @@ func _on_item_btn_mouse_exited() -> void:
 	item_desc_panel.hide()
 
 func _on_work_btn_pressed(scene: String) -> void:
+	ButtonSound.play_click_sound()
 	if scene == '':
 		end_of_content.popup_centered()
 	else:
@@ -549,37 +564,44 @@ func _on_work_btn_mouse_entered(button: Button, title: String, description: Stri
 	show_desc(button, title, description, difficulty, time, '')
 
 func _on_exit_work_btn_pressed() -> void:
+	ButtonSound.play_click_sound()
 	work.visible = false
 	for button in get_tree().get_nodes_in_group('Buttons'):
 		button.disabled = false
 
 
 func _on_exit_talk_btn_pressed() -> void:
+	ButtonSound.play_click_sound()
 	exit_talk()
 
 
 func _on_exit_eat_btn_pressed() -> void:
+	ButtonSound.play_click_sound()
 	eat.visible = false
 	for button in get_tree().get_nodes_in_group('Buttons'):
 		button.disabled = false
 
 
 func _on_give_btn_pressed() -> void:
+	ButtonSound.play_click_sound()
 	give_gift_menu.visible = true
 	talking.visible = false
 	set_visibility_buttons(button_map_give)
 
 
 func _on_exit_give_gift_btn_pressed() -> void:
+	ButtonSound.play_click_sound()
 	give_gift_menu.visible = false
 	talking.visible = true
 
 func exit_talk():
+	ButtonSound.play_click_sound()
 	talk.visible = false
 	for button in get_tree().get_nodes_in_group('Buttons'):
 		button.disabled = false
 
 func _on_small_btn_pressed() -> void:
+	ButtonSound.play_click_sound()
 	if time_slot == 1:
 		choose_dialogue(15)
 	elif time_slot == 2:
@@ -592,6 +614,7 @@ func _on_small_btn_pressed() -> void:
 
 
 func _on_play_btn_pressed() -> void:
+	ButtonSound.play_click_sound()
 	var choice = randi_range(1, 4)
 	if choice == 1:
 		choose_dialogue(27)
@@ -607,6 +630,7 @@ func _on_play_btn_pressed() -> void:
 
 
 func _on_life_btn_pressed() -> void:
+	ButtonSound.play_click_sound()
 	if SaveManager.stats.girl_stats['trust'] > 300 and SaveManager.stats.girl_stats['mood'] > 300:
 		if SaveManager.stats.events['Birthday'] == false:
 			choose_dialogue(178)

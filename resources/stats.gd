@@ -7,10 +7,10 @@ const MIN_STATS = 0
 const MIN_GOLD = 0
 #player Stats
 @export var player_stats = {'hp' : 100.0, 'str' : 20, 'def' : 10, 'dex' : 20, 'spd' : 10}
-@export var gold = 100000
+@export var gold = 100
 
 #Girl Stats
-@export var girl_stats = {'mood' : 1, 'trust' : 1, 'hunger' : 50}
+@export var girl_stats = {'mood' : 1, 'trust' : 1, 'hunger' : 100}
 @export var girl_mood = {'Depressed' : 0, 'Sad' : 1, 'Disappointed' : 2, 'Anxious' : 3, 'Indifferent' : 4, 'Content' : 5, 'Curious' : 6, 'Hopeful' : 7, 'Grateful' : 8, 'Cheerful ' : 9}
 @export var girl_trust = {'Stranger' : 0, 'Distrustful' : 1, 'Cautious' : 2, 'Wary' : 3, 'Neutral' : 4, 'Acquainted' : 5, 'Reliable' : 6, 'Confident' : 7, 'Trustful' : 8, 'Ride-or-Die' : 9}
 
@@ -26,7 +26,7 @@ const MIN_GOLD = 0
 @export var kill_count = 0
 @export var damage_taken = 0
 @export var damage_given = 0
-@export var points = 1 + ((damage_given * kill_count) / (1 + damage_given))
+@export var coins_earned = 0
 
 @export var inventory: Dictionary = {}
 

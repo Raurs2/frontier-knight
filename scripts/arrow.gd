@@ -1,6 +1,8 @@
 extends Area2D
 
 var travelled_distance = 0
+@onready var hit_effect: HitEffect = $HitEffect
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 func _physics_process(delta: float) -> void:
 	const SPEED = 1000
@@ -16,6 +18,11 @@ func _physics_process(delta: float) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-	queue_free()
 	if body.has_method("take_damage"):
 		body.take_damage('bow')
+		hit_effect.play_audio()
+		collision_shape_2d.disabled
+		visible = false
+		await get_tree().create_timer(0.3).timeout
+		
+	queue_free()

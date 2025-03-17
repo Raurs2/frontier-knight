@@ -12,15 +12,16 @@ signal health_depleted
 
 const FADE = 0.5
 const ROTATION_SPEED = 5
-var health = 100.0
-
+var health = SaveManager.stats.player_stats['hp']
+var speed = SaveManager.stats.player_stats['spd'] * 55
+var shield = SaveManager.stats.player_stats['def'] / 10.0
 func _ready() -> void:
 	var tween = create_tween()
 	tween.tween_property(health_bar, 'modulate', Color(1, 1, 1, 0), FADE * 4)
 	
 func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
-	velocity = direction * 600
+	velocity = direction * speed
 	move_and_slide()
 	
 	sword_pivot.rotation += delta * ROTATION_SPEED
@@ -46,8 +47,8 @@ func _physics_process(delta: float) -> void:
 		var tween = create_tween()
 		tween.tween_property(health_bar, 'modulate', Color(1, 1, 1, 1), FADE)
 		
-		health -= DAMAGE_RATE * overlapping_mobs.size() * delta
-		SaveManager.stats.damage_taken += DAMAGE_RATE * overlapping_mobs.size() * delta
+		health -= DAMAGE_RATE * overlapping_mobs.size() * delta 
+		SaveManager.stats.damage_taken += DAMAGE_RATE * overlapping_mobs.size() * delta / shield
 		health_bar.value = health
 		if health <= 0.0:
 			health_depleted.emit()

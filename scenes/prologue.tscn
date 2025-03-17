@@ -1,15 +1,12 @@
-[gd_scene load_steps=12 format=3 uid="uid://ceh5vs0wvmju7"]
+[gd_scene load_steps=9 format=3 uid="uid://ceh5vs0wvmju7"]
 
 [ext_resource type="Script" path="res://scripts/prologue.gd" id="1_051pu"]
 [ext_resource type="PackedScene" uid="uid://y6napfl41381" path="res://scenes/player.tscn" id="2_3qno1"]
 [ext_resource type="PackedScene" uid="uid://bhrndphenp0fr" path="res://scenes/dialog_box.tscn" id="3_mjnag"]
-[ext_resource type="PackedScene" uid="uid://b0ynccbvyery2" path="res://scenes/tree1.tscn" id="3_yfqka"]
+[ext_resource type="PackedScene" uid="uid://tqc1ybt3i6e1" path="res://scenes/Map1.tscn" id="5_dkddg"]
+[ext_resource type="PackedScene" uid="uid://bqhs88q4rsl01" path="res://scenes/settings.tscn" id="5_i6nsk"]
 [ext_resource type="PackedScene" uid="uid://0e054jf2e71e" path="res://scenes/hud.tscn" id="5_ln8jo"]
-[ext_resource type="Texture2D" uid="uid://xf4yd1r25r5e" path="res://assets/forest/bush 1.png" id="6_k2k8t"]
-[ext_resource type="Texture2D" uid="uid://b8qvg2itpv56u" path="res://assets/forest/bush 2.png" id="7_17610"]
-[ext_resource type="Texture2D" uid="uid://bal32aa35inij" path="res://assets/forest/grass 1.png" id="8_338q7"]
-[ext_resource type="Texture2D" uid="uid://cv41gir3v2nsa" path="res://assets/forest/grass 2.png" id="9_murr5"]
-[ext_resource type="PackedScene" uid="uid://bl6asc2g0dhhq" path="res://scenes/tree2.tscn" id="10_104yt"]
+[ext_resource type="PackedScene" uid="uid://bjrtnhm6q574e" path="res://scenes/bgm.tscn" id="6_xsin0"]
 
 [sub_resource type="Curve2D" id="Curve2D_su6ya"]
 _data = {
@@ -20,14 +17,6 @@ point_count = 5
 [node name="Prologue" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_051pu")
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
-offset_right = 1919.0
-offset_bottom = 1080.0
-color = Color(0.41598, 0.41598, 0.41598, 1)
 
 [node name="Player" parent="." instance=ExtResource("2_3qno1")]
 position = Vector2(960, 500)
@@ -64,6 +53,22 @@ offset_bottom = -534.0
 grow_vertical = 1
 size_flags_horizontal = 4
 
+[node name="Settings" parent="Player" instance=ExtResource("5_i6nsk")]
+process_mode = 2
+visible = false
+z_index = 100
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -158.5
+offset_top = -217.0
+offset_right = 158.5
+offset_bottom = 217.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.3
 autostart = true
@@ -96,43 +101,9 @@ grow_vertical = 2
 theme_override_font_sizes/font_size = 122
 text = "Game Over"
 
-[node name="Bush1" type="Sprite2D" parent="."]
-position = Vector2(176, 393)
-texture = ExtResource("6_k2k8t")
+[node name="Map1" parent="." instance=ExtResource("5_dkddg")]
 
-[node name="Bush2" type="Sprite2D" parent="."]
-position = Vector2(1762, 741)
-texture = ExtResource("7_17610")
-
-[node name="Grass1" type="Sprite2D" parent="."]
-position = Vector2(1307, 485)
-texture = ExtResource("8_338q7")
-
-[node name="Grass2" type="Sprite2D" parent="."]
-position = Vector2(1228, 576)
-texture = ExtResource("9_murr5")
-
-[node name="Grass3" type="Sprite2D" parent="."]
-position = Vector2(1381, 591)
-texture = ExtResource("8_338q7")
-
-[node name="Grass4" type="Sprite2D" parent="."]
-position = Vector2(1319, 483)
-texture = ExtResource("9_murr5")
-
-[node name="Grass5" type="Sprite2D" parent="."]
-position = Vector2(692, 568)
-texture = ExtResource("8_338q7")
-
-[node name="Grass6" type="Sprite2D" parent="."]
-position = Vector2(508, 377)
-texture = ExtResource("9_murr5")
-
-[node name="Tree1" parent="." instance=ExtResource("3_yfqka")]
-position = Vector2(650, 410)
-
-[node name="Tree2" parent="." instance=ExtResource("10_104yt")]
-position = Vector2(1686, 354)
+[node name="Bgm" parent="." instance=ExtResource("6_xsin0")]
 
 [connection signal="health_depleted" from="Player" to="." method="_on_player_health_depleted"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

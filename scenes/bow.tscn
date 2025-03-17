@@ -65,7 +65,9 @@ position = Vector2(155.914, 18.9873)
 scale = Vector2(4.33094, 6.32911)
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.3
 autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Sound"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

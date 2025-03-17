@@ -22,34 +22,43 @@ grow_horizontal = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer"]
 layout_mode = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 30
 
-[node name="EnemiesIcon" type="Label" parent="CenterContainer/HBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="EnemiesIcon" type="Label" parent="CenterContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "E"
+text = "Killed: "
 
-[node name="EnemiesLabel" type="Label" parent="CenterContainer/HBoxContainer"]
+[node name="EnemiesLabel" type="Label" parent="CenterContainer/HBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "12312312312"
 
-[node name="TimeIcon" type="Label" parent="CenterContainer/HBoxContainer"]
+[node name="HBoxContainer2" type="HBoxContainer" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TimeIcon" type="Label" parent="CenterContainer/HBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "T"
+text = "Time left: "
 
-[node name="TimeLabel" type="Label" parent="CenterContainer/HBoxContainer"]
+[node name="TimeLabel" type="Label" parent="CenterContainer/HBoxContainer/HBoxContainer2"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "5:00"
 
-[node name="MoneyIcon" type="Label" parent="CenterContainer/HBoxContainer"]
+[node name="HBoxContainer3" type="HBoxContainer" parent="CenterContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="MoneyIcon" type="Label" parent="CenterContainer/HBoxContainer/HBoxContainer3"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "G"
+text = "Gold earned: "
 
-[node name="MoneyLabel" type="Label" parent="CenterContainer/HBoxContainer"]
+[node name="MoneyLabel" type="Label" parent="CenterContainer/HBoxContainer/HBoxContainer3"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "111112332131"

@@ -1,5 +1,14 @@
 extends Area2D
 @onready var bow: AnimatedSprite2D = $BowPivot/Bow
+@onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
+@onready var timer: Timer = $Timer
+
+var audio_charge = preload("res://assets/sounds/bow-loading-38752.mp3")
+var audio_release = preload("res://assets/sounds/bow-release-bow-and-arrow-4-101936.mp3")
+var speed = SaveManager.stats.player_stats['dex']
+
+func _ready() -> void:
+	timer.start(30.0/speed)
 
 func _physics_process(delta: float) -> void:
 	var enemies_in_range = get_overlapping_bodies()
@@ -9,13 +18,14 @@ func _physics_process(delta: float) -> void:
 
 func shoot():
 	bow.play('shoot')
+
 	const BULLET = preload("res://scenes/arrow.tscn")
 	var new_bullet = BULLET.instantiate()
 	new_bullet.global_position = %ShootingPoint.global_position
 	new_bullet.global_rotation = %ShootingPoint.global_rotation
-	%ShootingPoint.add_child(new_bullet)
-	
-
+	get_parent().add_child(new_bullet) 
 
 func _on_timer_timeout() -> void:
+	audio_stream_player.stream = audio_charge
+	audio_stream_player.play()
 	shoot()

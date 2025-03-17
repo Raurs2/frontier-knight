@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8qqtajgxm2hi"]
+[gd_scene load_steps=5 format=3 uid="uid://b8qqtajgxm2hi"]
 
 [ext_resource type="Script" path="res://scripts/sword.gd" id="1_nrrna"]
 [ext_resource type="Texture2D" uid="uid://bai077dl5y8d5" path="res://assets/weapons/sword.png" id="2_mgj0p"]
+[ext_resource type="PackedScene" uid="uid://duveddo6g3d6w" path="res://scenes/hit_effect.tscn" id="2_xmcfi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f0lq7"]
 size = Vector2(167.5, 11)
@@ -10,6 +11,8 @@ size = Vector2(167.5, 11)
 collision_layer = 0
 collision_mask = 6
 script = ExtResource("1_nrrna")
+
+[node name="HitEffect" parent="." instance=ExtResource("2_xmcfi")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(166, -0.5)

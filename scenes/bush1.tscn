@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkjgvinekpkkt"]
+
+[ext_resource type="Texture2D" uid="uid://ccmskio3guhw5" path="res://assets/enemies/shadow.png" id="1_vrmnc"]
+[ext_resource type="Texture2D" uid="uid://xf4yd1r25r5e" path="res://assets/forest/bush 1.png" id="2_8kycn"]
+
+[node name="Bush1" type="Node2D"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.443137)
+position = Vector2(-2, 94)
+scale = Vector2(1.1547, 1.15432)
+texture = ExtResource("1_vrmnc")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8kycn")
