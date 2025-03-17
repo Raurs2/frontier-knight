@@ -18,7 +18,7 @@ signal dialog_finished
 func _ready() -> void:
 	load_dialog()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_dialog_started and first_dialog:
 		visible = true
 		load_dialog()
@@ -38,8 +38,8 @@ func load_dialog():
 	if dialog_index < messages.size() and messages[dialog_index] != '-END-':
 		rich_text_label.text = messages[dialog_index]
 		rich_text_label.visible_ratio = 0
-		var len = rich_text_label.text.length()
-		var text_speed = len * 0.018
+		var len_text = rich_text_label.text.length()
+		var text_speed = len_text * 0.018
 		
 		if tween and tween.is_running():
 			tween.kill()

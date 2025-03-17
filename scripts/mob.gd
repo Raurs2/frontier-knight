@@ -15,7 +15,7 @@ func _ready() -> void:
 	speed = randf_range(280.0, 320.0)
 var health = MAX_HEALTH
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * speed
 	
@@ -36,4 +36,4 @@ func take_damage(weapon: String):
 		get_parent().add_child(smoke)
 		smoke.global_position = global_position
 		SaveManager.stats.kill_count += 1
-		SaveManager.stats.coins_earned += 4
+		SaveManager.stats.coins_earned += 2

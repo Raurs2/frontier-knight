@@ -7,7 +7,7 @@ class_name LevelEndScore
 @onready var coins_earned: Label = $Panel/CenterContainer/VBoxContainer/GridContainer/CoinsEarned
 @onready var points_label: Label = $Panel/CenterContainer/VBoxContainer/GridContainer2/PointsLabel
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	show_stats()
 
 func show_stats():

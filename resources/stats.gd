@@ -1,4 +1,4 @@
-extends Node
+extends Resource
 class_name Stats
 
 const MAX_STATS = 999

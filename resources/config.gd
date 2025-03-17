@@ -1,4 +1,4 @@
-extends Node
+extends Resource
 class_name Config
 
 @export var sound = 75.0

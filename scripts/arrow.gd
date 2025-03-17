@@ -21,7 +21,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body.has_method("take_damage"):
 		body.take_damage('bow')
 		hit_effect.play_audio()
-		collision_shape_2d.disabled
+		collision_shape_2d.disabled = true
 		visible = false
 		await get_tree().create_timer(0.3).timeout
 		

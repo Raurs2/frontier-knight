@@ -24,7 +24,6 @@ func _ready() -> void:
 
 	sound_bar.value_changed.connect(_on_sound_bar_value_changed)
 	music_bar.value_changed.connect(_on_music_bar_value_changed)
-	check_fullscreen.toggled.connect(_on_check_fullscreen_toggled)
 
 func _on_confirm_set_btn_pressed() -> void:
 	visible = false
@@ -70,7 +69,6 @@ func load_settings():
 	sound_bar.value = SaveManager.config.sound
 	music_bar.value = SaveManager.config.music
 	var saved_res = SaveManager.config.resolution
-	print(saved_res)
 	resolution_option.select(resolution_option.get_item_index(saved_res))
 	check_fullscreen.button_pressed = SaveManager.config.fullscreen
 

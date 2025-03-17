@@ -8,7 +8,7 @@ class_name Hud
 @onready var money_label: Label = $CenterContainer/HBoxContainer/HBoxContainer3/MoneyLabel
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	show_stats()
 
 func show_stats():

@@ -195,10 +195,10 @@ func _ready() -> void:
 	connect_item_button(spd_potion_btn, "SPD Potion", 3, "str", 2, 100)
 	connect_item_button(hp_potion_btn, "HP Potion", 3, "str", 2, 100)
 	connect_item_button(ult_potion_btn, "ULTIMA Potion", 9, "str", 1, 100)
-	#if not SaveManager.stats.dialogues['tutorial']:
-		#dialog_box.is_dialog_started = true
-		#dialog_box.dialog_index = 1
-		#SaveManager.stats.dialogues['tutorial'] = true
+	if not SaveManager.stats.events['Tutorial']:
+		dialog_box.is_dialog_started = true
+		dialog_box.dialog_index = 1
+		SaveManager.stats.events['Tutorial'] = true
 
 	button_map_give = {
 		give_wooden_btn: "Wooden Doll",
@@ -463,6 +463,7 @@ func _on_confirmation_dialog_confirmed() -> void:
 	ButtonSound.play_click_sound()
 	time_slot += 1
 	shopping.visible = false
+	girl_stat_change(0, 0, randi_range(20, 40))
 	for button in get_tree().get_nodes_in_group('Buttons'):
 		button.disabled = false
 

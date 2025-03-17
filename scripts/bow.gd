@@ -4,13 +4,12 @@ extends Area2D
 @onready var timer: Timer = $Timer
 
 var audio_charge = preload("res://assets/sounds/bow-loading-38752.mp3")
-var audio_release = preload("res://assets/sounds/bow-release-bow-and-arrow-4-101936.mp3")
 var speed = SaveManager.stats.player_stats['dex']
 
 func _ready() -> void:
 	timer.start(30.0/speed)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var enemies_in_range = get_overlapping_bodies()
 	if enemies_in_range.size() > 0:
 		var target_enemy = enemies_in_range.front()
