@@ -8,28 +8,30 @@ class_name LevelEndScore
 @onready var points_label: Label = $Panel/CenterContainer/VBoxContainer/GridContainer2/PointsLabel
 
 func _process(_delta: float) -> void:
-	show_stats()
-
-func show_stats():
 	killed_label.text = str(SaveManager.stats.kill_count)
 	damage_given.text = str(SaveManager.stats.damage_given)
 	damage_taken_label.text = str(round(SaveManager.stats.damage_taken))
 	coins_earned.text = str(SaveManager.stats.coins_earned)
-	#points_label.text = str(round(SaveManager.stats.points))
-	
-
 
 func _on_button_pressed() -> void:
 	SaveManager.stats.player_stats['hp'] = 100
 	SaveManager.stats.add_gold(SaveManager.stats.coins_earned)
+
 	SaveManager.stats.coins_earned = 0
 	SaveManager.stats.kill_count = 0
 	SaveManager.stats.damage_given = 0
 	SaveManager.stats.damage_taken = 0
+
 	SaveManager.stats.slime_stats['def'] += 1
 	SaveManager.stats.slime_stats['dmg'] += 1.0
 	SaveManager.stats.slime_stats['hp'] += 1
 	SaveManager.stats.slime_stats['spd'] += 1
+
+	SaveManager.stats.globin_stats['def'] += 1
+	SaveManager.stats.globin_stats['dmg'] += 1.0
+	SaveManager.stats.globin_stats['hp'] += 1
+	SaveManager.stats.globin_stats['spd'] += 1
+
 	if not SaveManager.stats.events['Tutorial']:
 		get_tree().change_scene_to_file("res://scenes/prologue2.tscn")
 	else:
