@@ -33,7 +33,6 @@ func _process(_delta: float) -> void:
 			else:
 				load_dialog()
 
-
 func load_dialog():
 	if dialog_index < messages.size() and messages[dialog_index] != '-END-':
 		rich_text_label.text = messages[dialog_index]
@@ -43,7 +42,7 @@ func load_dialog():
 		
 		if tween and tween.is_running():
 			tween.kill()
-			
+
 		tween = get_tree().create_tween()
 		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		tween.tween_property(rich_text_label, 'visible_ratio', 1, text_speed)
@@ -51,7 +50,6 @@ func load_dialog():
 		
 		is_speaking = true
 		dialog_index += 1
-		
 	else:
 		first_dialog = true
 		is_dialog_started = false
