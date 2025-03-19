@@ -13,7 +13,6 @@ func _ready() -> void:
 	randomize()
 
 func play_audio():
-		
 	var play_toaudio = hit_effects[randi_range(1, 3)]
 	audio_stream_player.stream = play_toaudio
 	audio_stream_player.play()
