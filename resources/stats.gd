@@ -5,9 +5,10 @@ const MAX_STATS = 999
 const MAX_GOLD = 999999999
 const MIN_STATS = 0
 const MIN_GOLD = 0
+
 #player Stats
 @export var player_stats = {'hp' : 100.0, 'str' : 20, 'def' : 20, 'dex' : 20, 'spd' : 20.0}
-@export var gold = MAX_GOLD
+@export var gold = 100
 
 #Girl Stats
 @export var girl_stats = {'mood' : 1, 'trust' : 1, 'hunger' : 100}
@@ -24,6 +25,7 @@ const MIN_GOLD = 0
 
 #enemies
 @export var slime_stats = {'hp' : 75, 'dmg' : 20.0, 'def' : 5, 'spd' : 300.0}
+@export var globin_stats = {'hp' : 135, 'dmg' : 40.0, 'def' : 15, 'spd' : 350.0}
 
 #Level Stats
 @export var kill_count = 0
@@ -40,7 +42,6 @@ func add_item(item_name: String, price: int, stat: String, value: int, max_stack
 			add_stat(stat, value, player_stats)
 		if inventory.has(item_name):
 			inventory[item_name].add_quantity(1)
-			
 		else:
 			inventory[item_name] = Item.new(1, max_stack)
 
