@@ -18,7 +18,6 @@ func spawn_mob():
 func _on_spawn_timer_timeout() -> void:
 	spawn_mob() 
 
-
 func _on_player_health_depleted() -> void:
 	hud.level_end_score.visible = true
 	get_tree().paused = true
