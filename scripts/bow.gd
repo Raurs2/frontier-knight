@@ -1,4 +1,5 @@
 extends Area2D
+
 @onready var bow: AnimatedSprite2D = $BowPivot/Bow
 @onready var audio_stream_player: AudioStreamPlayer = $AudioStreamPlayer
 @onready var timer: Timer = $Timer
@@ -18,11 +19,13 @@ func _physics_process(_delta: float) -> void:
 func shoot():
 	bow.play('shoot')
 
-	const BULLET = preload("res://scenes/arrow.tscn")
-	var new_bullet = BULLET.instantiate()
-	new_bullet.global_position = %ShootingPoint.global_position
-	new_bullet.global_rotation = %ShootingPoint.global_rotation
-	get_parent().add_child(new_bullet) 
+	const ARROW = preload("res://scenes/arrow.tscn")
+	var new_arrow = ARROW.instantiate()
+
+	new_arrow.global_position = %ShootingPoint.global_position
+	new_arrow.global_rotation = %ShootingPoint.global_rotation
+
+	get_parent().add_child(new_arrow) 
 
 func _on_timer_timeout() -> void:
 	audio_stream_player.stream = audio_charge
