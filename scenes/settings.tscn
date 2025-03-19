@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/settings.gd" id="1_6pgod"]
 
 [node name="Settings" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 0
 offset_right = 317.0

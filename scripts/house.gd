@@ -124,6 +124,7 @@ const BASE_PRICE = 100
 const BASE_STAT_UP = 10
 
 func _ready() -> void:
+	get_tree().paused = false
 	bgm.play_audio(8)
 	time_slot = SaveManager.stats.day_time
 	
@@ -194,7 +195,7 @@ func _ready() -> void:
 	connect_item_button(def_potion_btn, "DEF Potion", 3, "str", 2, 100)
 	connect_item_button(spd_potion_btn, "SPD Potion", 3, "str", 2, 100)
 	connect_item_button(hp_potion_btn, "HP Potion", 3, "str", 2, 100)
-	connect_item_button(ult_potion_btn, "ULTIMA Potion", 9, "str", 1, 100)
+	connect_item_button(ult_potion_btn, "ULTIMA Potion", 9, "Random", 1, 100)
 	if not SaveManager.stats.events['Tutorial']:
 		dialog_box.is_dialog_started = true
 		dialog_box.dialog_index = 1
@@ -231,19 +232,19 @@ func _process(delta: float) -> void:
 
 
 func set_visibility_buttons(button_map: Dictionary):
-	
 	for button in button_map.keys():
-		if SaveManager.stats.inventory.has(button_map[button]) and SaveManager.stats.inventory[button_map[button]].quantity > 0:
+		if button_map[button] in SaveManager.stats.inventory and SaveManager.stats.inventory[button_map[button]].quantity > 0:
 			button.visible = true
 		else:
 			button.visible = false
 
+
 func connect_buttons_give(button1: Button, button2: Button, name: String, price_multiplier: float, stat_type: String, stat_multiplier: float, quantity: int):
 	connect_item_button(button1, name, price_multiplier, stat_type, stat_multiplier, quantity)
-	connect_give_button(button2, name, stat_type, stat_multiplier, price_multiplier)
+	connect_give_button(button2, name, stat_multiplier, price_multiplier)
 	
 
-func connect_give_button(button: Button, name: String, stat_type: String, stat_multiplier: float, price_multiplier: float):
+func connect_give_button(button: Button, name: String, stat_multiplier: float, price_multiplier: float):
 	var stat_value = int(BASE_STAT_UP * stat_multiplier)
 	var stat_text = "Trust +%d" % stat_value
 	var price = int(BASE_PRICE * price_multiplier)
@@ -254,9 +255,9 @@ func connect_give_button(button: Button, name: String, stat_type: String, stat_m
 	button.mouse_exited.connect(func(): _on_item_btn_mouse_exited())
 	
 			
-func connect_buttons(button1: Button, button2: Button, name: String, price_multiplier: float, stat_type: String, stat_multiplier: float, quantity: int):
-	connect_item_button(button1, name, price_multiplier, stat_type, stat_multiplier, quantity)
-	connect_eat_button(button2, name, stat_type, stat_multiplier, price_multiplier)
+func connect_buttons(button1: Button, button2: Button, nome: String, price_multiplier: float, stat_type: String, stat_multiplier: float, quantity: int):
+	connect_item_button(button1, nome, price_multiplier, stat_type, stat_multiplier, quantity)
+	connect_eat_button(button2, nome, stat_type, stat_multiplier, price_multiplier)
 
 func connect_work_button(button: Button, title: String, description: String, difficulty: String, time: String, scene: String):
 	button.pressed.connect(func (): _on_work_btn_pressed(scene))
@@ -264,25 +265,25 @@ func connect_work_button(button: Button, title: String, description: String, dif
 	button.mouse_exited.connect(func(): _on_item_btn_mouse_exited())
 
 
-func connect_eat_button(button: Button, name: String, stat_type: String, stat_multiplier: float, price_multiplier: float):
+func connect_eat_button(button: Button, nome: String, stat_type: String, stat_multiplier: float, price_multiplier: float):
 	var stat_value = int(BASE_STAT_UP * stat_multiplier)
 	var stat_text = "%s +%d" % [stat_type.to_upper(), stat_value]
 	var price = int(BASE_PRICE * price_multiplier)
 	var price_text = "Mood +%d " % price
 	
-	button.pressed.connect(func(): _on_eat_btn_pressed(name, stat_value, price))
+	button.pressed.connect(func(): _on_eat_btn_pressed(nome, stat_value, price))
 	button.mouse_entered.connect(func(): _on_eat_btn_mouse_entered(button, name, stat_text, price_text))
 	button.mouse_exited.connect(func(): _on_item_btn_mouse_exited())
 
-func connect_item_button(button: Button, name: String, price_multiplier: float, stat_type: String, stat_multiplier: float, quantity: int):
+func connect_item_button(button: Button, nome: String, price_multiplier: float, stat_type: String, stat_multiplier: float, quantity: int):
 
 	var price = int(BASE_PRICE * price_multiplier)
 	var stat_value = int(BASE_STAT_UP * stat_multiplier)
 	var stat_text = "%s +%d" % [stat_type.to_upper(), stat_value]
 	var price_text = "%d Gold" % price
 
-	button.pressed.connect(func(): _on_item_btn_pressed(name, price, stat_type, stat_value, quantity))
-	button.mouse_entered.connect(func(): _on_item_btn_mouse_entered(button, name, stat_text, price_text))
+	button.pressed.connect(func(): _on_item_btn_pressed(nome, price, stat_type, stat_value, quantity))
+	button.mouse_entered.connect(func(): _on_item_btn_mouse_entered(button, nome, stat_text, price_text))
 	button.mouse_exited.connect(_on_item_btn_mouse_exited)
 
 func determine_mood():
@@ -427,10 +428,13 @@ func sleep():
 	SaveManager.save_game()
 
 func _on_sleep_button_pressed() -> void:
+	girl_stat_change(0, 0, randi_range(-10, -20))
 	ButtonSound.play_click_sound()
 	sleep()
 
 func _on_menu_button_pressed() -> void:
+	SaveManager.stats.day_time = 1
+	SaveManager.save_game()
 	ButtonSound.play_click_sound()
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
 	 
@@ -463,13 +467,13 @@ func _on_confirmation_dialog_confirmed() -> void:
 	ButtonSound.play_click_sound()
 	time_slot += 1
 	shopping.visible = false
-	girl_stat_change(0, 0, randi_range(20, 40))
+	girl_stat_change(0, 0, randi_range(-20, -30))
 	for button in get_tree().get_nodes_in_group('Buttons'):
 		button.disabled = false
 
-func _toggle_menu(menu: Control, show: bool) -> void:
-	shopping.visible = not show
-	menu.visible = show
+func _toggle_menu(menu: Control, show_menu: bool) -> void:
+	shopping.visible = not show_menu
+	menu.visible = show_menu
 
 func _on_give_item_btn_pressed(item: String, trust: int, mood: int):
 	ButtonSound.play_click_sound()
@@ -538,7 +542,11 @@ func _on_eat_btn_mouse_entered(button: Button, title: String, satiety: String, m
 
 func _on_item_btn_pressed(item_name: String, price: int, stat_type: String, stat_value: int, max_amount: int) -> void:
 	ButtonSound.play_click_sound()
-	SaveManager.stats.add_item(item_name, price, stat_type, stat_value, max_amount)
+	if stat_type == 'Random':
+		var types = {1 : 'str', 2 : 'def', 3 : 'spd', 4 : 'dex', 5 : 'hp'}
+		SaveManager.stats.add_stat(types[randi_range(1, 5)], 50, SaveManager.stats.player_stats)
+	else:
+		SaveManager.stats.add_item(item_name, price, stat_type, stat_value, max_amount)
 	if SaveManager.stats.inventory.has(item_name):
 		text_3l.text = 'Owned: %d' % SaveManager.stats.inventory[item_name].quantity
 	else:
@@ -558,7 +566,7 @@ func _on_work_btn_pressed(scene: String) -> void:
 	else:
 		time_slot += 1
 		SaveManager.stats.day_time = time_slot
-		girl_stat_change(0, randi_range(-10, 10), randi_range(-40, -20))
+		girl_stat_change(0, randi_range(-10, 10), randi_range(-30, -20))
 		get_tree().change_scene_to_file(scene)
 
 func _on_work_btn_mouse_entered(button: Button, title: String, description: String, difficulty: String, time: String) -> void:
@@ -609,7 +617,7 @@ func _on_small_btn_pressed() -> void:
 		choose_dialogue(18)
 	elif time_slot == 3:
 		choose_dialogue(21)
-	girl_stat_change(randi_range(20, 50), randi_range(20, 40), randi_range(-20, -40))
+	girl_stat_change(randi_range(20, 50), randi_range(20, 40), randi_range(-20, -30))
 	exit_talk()
 	time_slot += 1
 
@@ -625,7 +633,7 @@ func _on_play_btn_pressed() -> void:
 		choose_dialogue(33)
 	elif choice == 4:
 		choose_dialogue(36)
-	girl_stat_change(randi_range(30, 70), randi_range(30, 60), randi_range(-25, -60))
+	girl_stat_change(randi_range(30, 70), randi_range(30, 60), randi_range(-25, -40))
 	exit_talk()
 	time_slot += 1
 
@@ -642,3 +650,7 @@ func _on_life_btn_pressed() -> void:
 			choose_dialogue(40)
 	else:
 		choose_dialogue(43)
+
+
+func _on_items_button_pressed() -> void:
+	end_of_content.popup_centered()

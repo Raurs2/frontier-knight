@@ -26,8 +26,11 @@ func _ready() -> void:
 	music_bar.value_changed.connect(_on_music_bar_value_changed)
 
 func _on_confirm_set_btn_pressed() -> void:
+	SaveManager.save_settings()
 	visible = false
 	get_tree().paused = false
+	for button in get_tree().get_nodes_in_group('Buttons'):
+		button.disabled = false
 
 func _on_resolution_option_item_selected(index: int) -> void:
 	var selected = resolution_option.get_item_text(index)

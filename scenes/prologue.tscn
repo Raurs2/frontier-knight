@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/prologue.gd" id="1_051pu"]
 [ext_resource type="PackedScene" uid="uid://y6napfl41381" path="res://scenes/player.tscn" id="2_3qno1"]
+[ext_resource type="PackedScene" uid="uid://01trnfx0bieo" path="res://scenes/Map2.tscn" id="2_g3sl3"]
 [ext_resource type="PackedScene" uid="uid://bhrndphenp0fr" path="res://scenes/dialog_box.tscn" id="3_mjnag"]
-[ext_resource type="PackedScene" uid="uid://tqc1ybt3i6e1" path="res://scenes/Map1.tscn" id="5_dkddg"]
 [ext_resource type="PackedScene" uid="uid://bqhs88q4rsl01" path="res://scenes/settings.tscn" id="5_i6nsk"]
 [ext_resource type="PackedScene" uid="uid://0e054jf2e71e" path="res://scenes/hud.tscn" id="5_ln8jo"]
 [ext_resource type="PackedScene" uid="uid://bjrtnhm6q574e" path="res://scenes/bgm.tscn" id="6_xsin0"]
@@ -17,6 +17,8 @@ point_count = 5
 [node name="Prologue" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_051pu")
+
+[node name="Map2" parent="." instance=ExtResource("2_g3sl3")]
 
 [node name="Player" parent="." instance=ExtResource("2_3qno1")]
 position = Vector2(960, 500)
@@ -72,8 +74,6 @@ grow_vertical = 2
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.3
 autostart = true
-
-[node name="Map1" parent="." instance=ExtResource("5_dkddg")]
 
 [node name="Bgm" parent="." instance=ExtResource("6_xsin0")]
 

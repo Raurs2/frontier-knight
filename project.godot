@@ -80,7 +80,6 @@ config/features=PackedStringArray("4.3", "Forward Plus")
 
 [autoload]
 
-Stat="*res://resources/stats.gd"
 SaveManager="*res://resources/save_manager.gd"
 ButtonSound="*res://resources/button_sound.gd"
 InputManager="*res://scripts/input_manager.gd"

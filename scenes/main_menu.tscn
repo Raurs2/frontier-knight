@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://b5peyeh7iwrxl"]
 
 [ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_7qbsq"]
-[ext_resource type="Texture2D" uid="uid://b8vaoxfve3v5b" path="res://assets/backgrounds/placeholder-bg.png" id="1_ko1ks"]
 [ext_resource type="PackedScene" uid="uid://bqhs88q4rsl01" path="res://scenes/settings.tscn" id="2_bbcgn"]
 [ext_resource type="PackedScene" uid="uid://bjrtnhm6q574e" path="res://scenes/bgm.tscn" id="2_tbost"]
+[ext_resource type="Texture2D" uid="uid://dqj47p61dadtq" path="res://assets/backgrounds/main menu.png" id="3_q3k6c"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -17,11 +17,10 @@ script = ExtResource("1_7qbsq")
 [node name="Bgm" parent="." instance=ExtResource("2_tbost")]
 
 [node name="TextureRect" type="TextureRect" parent="."]
-modulate = Color(0.310651, 6.65889e-05, 0.311603, 1)
 layout_mode = 0
 offset_right = 1921.0
 offset_bottom = 1075.0
-texture = ExtResource("1_ko1ks")
+texture = ExtResource("3_q3k6c")
 
 [node name="Settings" parent="." instance=ExtResource("2_bbcgn")]
 visible = false

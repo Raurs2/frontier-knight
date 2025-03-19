@@ -6,7 +6,7 @@ const MAX_GOLD = 999999999
 const MIN_STATS = 0
 const MIN_GOLD = 0
 #player Stats
-@export var player_stats = {'hp' : 100.0, 'str' : 20, 'def' : 10, 'dex' : 20, 'spd' : 10}
+@export var player_stats = {'hp' : 100.0, 'str' : 20, 'def' : 10, 'dex' : 20, 'spd' : 10.0}
 @export var gold = 100
 
 #Girl Stats
@@ -21,6 +21,9 @@ const MIN_GOLD = 0
 #System Stats
 @export var day_time = 1
 @export var days = 1
+
+#enemies
+@export var slime_stats = {'hp' : 75, 'dmg' : 20.0, 'def' : 5, 'spd' : 300.0}
 
 #Level Stats
 @export var kill_count = 0
@@ -37,8 +40,13 @@ func add_item(item_name: String, price: int, stat: String, value: int, max_stack
 			add_stat(stat, value, player_stats)
 		if inventory.has(item_name):
 			inventory[item_name].add_quantity(1)
+			print(inventory[item_name])
+			
 		else:
 			inventory[item_name] = Item.new(1, max_stack)
+			print(inventory[item_name])
+			print('new')
+			print(item_name)
 
 func remove_item(item_name: String):
 	if inventory.has(item_name):
@@ -48,10 +56,10 @@ func remove_item(item_name: String):
 
 func add_stat(stat: String, value: int, entity: Dictionary):
 	if entity.has(stat):
-		entity[stat] = min(max(entity[stat] + value, MIN_STATS), MAX_STATS)
+		entity[stat] = clamp(entity[stat] + value, MIN_STATS, MAX_STATS)
 		
 func add_gold(value: int):
-	gold = min(max(gold+value, MIN_GOLD), MAX_GOLD)
-	
+	gold = clamp(gold + value, MIN_GOLD, MAX_GOLD)
+
 func sub_gold(value: int):
-	gold = min(max(gold-value, MIN_GOLD), MAX_GOLD)
+	gold = clamp(gold - value, MIN_GOLD, MAX_GOLD)

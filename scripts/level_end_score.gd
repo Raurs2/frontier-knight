@@ -26,6 +26,10 @@ func _on_button_pressed() -> void:
 	SaveManager.stats.kill_count = 0
 	SaveManager.stats.damage_given = 0
 	SaveManager.stats.damage_taken = 0
+	SaveManager.stats.slime_stats['def'] += 1
+	SaveManager.stats.slime_stats['dmg'] += 1.0
+	SaveManager.stats.slime_stats['hp'] += 1
+	SaveManager.stats.slime_stats['spd'] += 1
 	if not SaveManager.stats.events['Tutorial']:
 		get_tree().change_scene_to_file("res://scenes/prologue2.tscn")
 	else:

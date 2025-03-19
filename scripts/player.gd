@@ -13,8 +13,8 @@ signal health_depleted
 const FADE = 0.5
 const ROTATION_SPEED = 5
 var health = SaveManager.stats.player_stats['hp']
-var speed = SaveManager.stats.player_stats['spd'] * 55
-var shield = SaveManager.stats.player_stats['def'] / 10.0
+var speed = SaveManager.stats.player_stats['spd'] + 400
+var shield = SaveManager.stats.player_stats['def'] / 2.0
 func _ready() -> void:
 	var tween = create_tween()
 	tween.tween_property(health_bar, 'modulate', Color(1, 1, 1, 0), FADE * 4)
@@ -40,14 +40,14 @@ func _physics_process(delta: float) -> void:
 		collision_shape_2d.position = Vector2(0, -48)
 		hit_box_collision.position = Vector2(0, -48)
 		
-	const DAMAGE_RATE = 20.0
+	var DAMAGE_RATE = SaveManager.stats.slime_stats['dmg']
 	var overlapping_mobs = hit_box.get_overlapping_bodies()
 	if overlapping_mobs.size() > 0:
 		timer.start(2)
 		var tween = create_tween()
 		tween.tween_property(health_bar, 'modulate', Color(1, 1, 1, 1), FADE)
 		
-		health -= DAMAGE_RATE * overlapping_mobs.size() * delta 
+		health -= DAMAGE_RATE * overlapping_mobs.size() * delta * 100 / (100 + shield)
 		SaveManager.stats.damage_taken += DAMAGE_RATE * overlapping_mobs.size() * delta / shield
 		health_bar.value = health
 		if health <= 0.0:

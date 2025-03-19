@@ -81,8 +81,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ugld"]
-radius = 6.91098
-height = 16.4533
+radius = 6.38262
+height = 14.9417
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xgjfo"]
 bg_color = Color(0.0383972, 0.0383972, 0.0383971, 1)
@@ -136,9 +136,9 @@ collision_mask = 2
 [node name="HitBoxCollision" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(11, -46)
 rotation = -3.14159
-scale = Vector2(3.18334, 5.74124)
+scale = Vector2(4.70026, 6.96037)
 shape = SubResource("CapsuleShape2D_8ugld")
-debug_color = Color(0.909804, 0, 0, 0.419608)
+debug_color = Color(0.5928, 0.468034, 0, 0.419608)
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -72.0

@@ -5,8 +5,11 @@ extends Control
 
 func _ready() -> void:
 	bgm.play_audio(3)
+	SaveManager.load_game()
+	SaveManager.load_settings()
 
 func _on_new_game_pressed() -> void:
+	SaveManager.remove_save()
 	ButtonSound.play_click_sound()
 	get_tree().change_scene_to_file("res://scenes/prologue.tscn")
 

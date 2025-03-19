@@ -13,6 +13,11 @@ func _ready() -> void:
 	load_game()
 	load_settings()
 
+func remove_save():
+	if FileAccess.file_exists(SAVE_PATH):
+		DirAccess.remove_absolute(SAVE_PATH)
+	stats = Stats.new()
+
 func save_game():
 	if FileAccess.file_exists(SAVE_PATH):
 		DirAccess.remove_absolute(SAVE_PATH)
@@ -20,6 +25,9 @@ func save_game():
 	var err = ResourceSaver.save(stats, SAVE_PATH, ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
 	if err != OK:
 		print("Failed to save game! Error code:", err)
+	else:
+		print("Game saved successfully!")
+
 
 func load_game():
 	if ResourceLoader.exists(SAVE_PATH):
