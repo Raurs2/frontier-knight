@@ -2,10 +2,10 @@ extends Resource
 
 class_name Item
 
-var quantity: int
-#var value: int
-var max_stack: int
 const MAX_STACK = 100
+
+var quantity: int
+var max_stack: int
 
 func _init(_quantity: int = 1, _max_stack: int = MAX_STACK):
 	quantity = _quantity
