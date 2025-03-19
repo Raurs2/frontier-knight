@@ -16,6 +16,7 @@ func _ready() -> void:
 func remove_save():
 	if FileAccess.file_exists(SAVE_PATH):
 		DirAccess.remove_absolute(SAVE_PATH)
+
 	stats = Stats.new()
 
 func save_game():
@@ -23,7 +24,6 @@ func save_game():
 		DirAccess.remove_absolute(SAVE_PATH)
 
 	ResourceSaver.save(stats, SAVE_PATH, ResourceSaver.FLAG_REPLACE_SUBRESOURCE_PATHS)
-
 
 func load_game():
 	if ResourceLoader.exists(SAVE_PATH):
@@ -37,7 +37,6 @@ func load_game():
 		return false
 
 func save_settings():
-
 	if FileAccess.file_exists(SETTINGS_PATH):
 		DirAccess.remove_absolute(SETTINGS_PATH)
 
