@@ -37,7 +37,7 @@ func _on_resolution_option_item_selected(index: int) -> void:
 	if selected in resolutions:
 		DisplayServer.window_set_size(resolutions[selected])
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		SaveManager.config["resolution"] = index
+		SaveManager.config.resolution = index
 	await get_tree().process_frame
 	update_res()
 
@@ -46,7 +46,7 @@ func _on_check_fullscreen_toggled(toggled_on: bool) -> void:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-	SaveManager.config["fullscreen"] = toggled_on
+	SaveManager.config.fullscreen = toggled_on
 	update_res()
 
 func update_res():
@@ -60,12 +60,12 @@ func update_res():
 func _on_sound_bar_value_changed(value: float) -> void:
 	var db = linear_to_db(value / 100.0)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Sound"), db)
-	SaveManager.config["sound"] = value
+	SaveManager.config.sound = value
 
 func _on_music_bar_value_changed(value: float) -> void:
 	var db = linear_to_db(value / 100.0)
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), db)
-	SaveManager.config["music"] = value
+	SaveManager.config.music = value
 
 func load_settings():
 	sound_bar.value = SaveManager.config.sound
