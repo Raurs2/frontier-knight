@@ -18,9 +18,9 @@ var resolutions = {
 func _ready() -> void:
 	for res in resolutions.keys():
 		resolution_option.add_item(res)
-	update_res()
-	
+
 	load_settings()
+	update_res()
 
 	sound_bar.value_changed.connect(_on_sound_bar_value_changed)
 	music_bar.value_changed.connect(_on_music_bar_value_changed)
@@ -47,7 +47,6 @@ func _on_check_fullscreen_toggled(toggled_on: bool) -> void:
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 	SaveManager.config["fullscreen"] = toggled_on
-
 	update_res()
 
 func update_res():
@@ -75,7 +74,6 @@ func load_settings():
 	resolution_option.select(resolution_option.get_item_index(saved_res))
 	check_fullscreen.button_pressed = SaveManager.config.fullscreen
 
-	# Apply settings
 	_on_sound_bar_value_changed(sound_bar.value)
 	_on_music_bar_value_changed(music_bar.value)
 	_on_resolution_option_item_selected(resolution_option.get_selected_id())
