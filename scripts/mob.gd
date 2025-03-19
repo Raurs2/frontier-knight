@@ -18,7 +18,6 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	var direction = global_position.direction_to(player.global_position)
 	velocity = direction * speed
-	
 	move_and_slide()
 
 func give_damage(damage : int):
@@ -36,9 +35,11 @@ func take_damage(weapon: String):
 	
 	if hp <= 0:
 		queue_free()
+
 		const SMOKE_EXPLOSION = preload("res://scenes/DeathEffect.tscn")
 		var smoke = SMOKE_EXPLOSION.instantiate()
 		get_parent().add_child(smoke)
 		smoke.global_position = global_position
+
 		SaveManager.stats.kill_count += 1
 		SaveManager.stats.coins_earned += 3
