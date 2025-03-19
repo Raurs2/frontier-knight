@@ -7,7 +7,7 @@ var audio_charge = preload("res://assets/sounds/bow-loading-38752.mp3")
 var speed = SaveManager.stats.player_stats['dex']
 
 func _ready() -> void:
-	timer.start(30.0/speed)
+	timer.start(1.0 * 1000 / (1000 + speed))
 
 func _physics_process(_delta: float) -> void:
 	var enemies_in_range = get_overlapping_bodies()

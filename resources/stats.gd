@@ -6,8 +6,8 @@ const MAX_GOLD = 999999999
 const MIN_STATS = 0
 const MIN_GOLD = 0
 #player Stats
-@export var player_stats = {'hp' : 100.0, 'str' : 20, 'def' : 10, 'dex' : 20, 'spd' : 10.0}
-@export var gold = 100
+@export var player_stats = {'hp' : 100.0, 'str' : 20, 'def' : 20, 'dex' : 20, 'spd' : 20.0}
+@export var gold = MAX_GOLD
 
 #Girl Stats
 @export var girl_stats = {'mood' : 1, 'trust' : 1, 'hunger' : 100}
@@ -16,7 +16,7 @@ const MIN_GOLD = 0
 
 #Events
 @export var events = {'Tutorial' : false, 'Wooden Doll' : false, 'Marbles' : false, 'Crayon' : false, 'Rag Doll' : false, 'Storybook' : false, 'Chess' : false, 
-'Well Made Doll' : false, 'Magicstation' : false}
+'Well Made Doll' : false, 'Magicstation' : false, 'Birthday' : false}
 
 #System Stats
 @export var day_time = 1
@@ -40,13 +40,9 @@ func add_item(item_name: String, price: int, stat: String, value: int, max_stack
 			add_stat(stat, value, player_stats)
 		if inventory.has(item_name):
 			inventory[item_name].add_quantity(1)
-			print(inventory[item_name])
 			
 		else:
 			inventory[item_name] = Item.new(1, max_stack)
-			print(inventory[item_name])
-			print('new')
-			print(item_name)
 
 func remove_item(item_name: String):
 	if inventory.has(item_name):

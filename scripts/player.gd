@@ -13,7 +13,7 @@ signal health_depleted
 const FADE = 0.5
 const ROTATION_SPEED = 5
 var health = SaveManager.stats.player_stats['hp']
-var speed = SaveManager.stats.player_stats['spd'] + 400
+var speed = 400 * ( ( 1000 + SaveManager.stats.player_stats['spd']) / 1000 )
 var shield = SaveManager.stats.player_stats['def'] / 2.0
 func _ready() -> void:
 	var tween = create_tween()

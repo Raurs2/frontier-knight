@@ -191,11 +191,11 @@ func _ready() -> void:
 	connect_buttons_give(magic_s_btn, give_magic_s_btn, 'Magicstation', 9.75, 'trust', 28.5, 100)
 	#potion
 	connect_item_button(str_potion_btn, "STR Potion", 3, "str", 2, 100)
-	connect_item_button(dex_potion_btn, "DEX Potion", 3, "str", 2, 100)
-	connect_item_button(def_potion_btn, "DEF Potion", 3, "str", 2, 100)
-	connect_item_button(spd_potion_btn, "SPD Potion", 3, "str", 2, 100)
-	connect_item_button(hp_potion_btn, "HP Potion", 3, "str", 2, 100)
-	connect_item_button(ult_potion_btn, "ULTIMA Potion", 9, "Random", 1, 100)
+	connect_item_button(dex_potion_btn, "DEX Potion", 3, "dex", 2, 100)
+	connect_item_button(def_potion_btn, "DEF Potion", 3, "def", 2, 100)
+	connect_item_button(spd_potion_btn, "SPD Potion", 3, "spd", 2, 100)
+	connect_item_button(hp_potion_btn, "HP Potion", 3, "hp", 2, 100)
+	connect_item_button(ult_potion_btn, "ULTIMA Potion", 9, "random", 1, 100)
 	if not SaveManager.stats.events['Tutorial']:
 		dialog_box.is_dialog_started = true
 		dialog_box.dialog_index = 1
@@ -224,7 +224,7 @@ func _ready() -> void:
 		eat_noble_btn: "Noble Meal"
 		}
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass_time()
 	determine_mood()
 	determine_trust()
@@ -239,19 +239,19 @@ func set_visibility_buttons(button_map: Dictionary):
 			button.visible = false
 
 
-func connect_buttons_give(button1: Button, button2: Button, name: String, price_multiplier: float, stat_type: String, stat_multiplier: float, quantity: int):
-	connect_item_button(button1, name, price_multiplier, stat_type, stat_multiplier, quantity)
-	connect_give_button(button2, name, stat_multiplier, price_multiplier)
+func connect_buttons_give(button1: Button, button2: Button, nome: String, price_multiplier: float, stat_type: String, stat_multiplier: float, quantity: int):
+	connect_item_button(button1, nome, price_multiplier, stat_type, stat_multiplier, quantity)
+	connect_give_button(button2, nome, stat_multiplier, price_multiplier)
 	
 
-func connect_give_button(button: Button, name: String, stat_multiplier: float, price_multiplier: float):
+func connect_give_button(button: Button, nome: String, stat_multiplier: float, price_multiplier: float):
 	var stat_value = int(BASE_STAT_UP * stat_multiplier)
 	var stat_text = "Trust +%d" % stat_value
 	var price = int(BASE_PRICE * price_multiplier)
 	var price_text = "Mood +%d " % price
 	
-	button.pressed.connect(func(): _on_give_item_btn_pressed(name, stat_value, price))
-	button.mouse_entered.connect(func(): _on_give_item_btn_mouse_entered(button, name, price_text, stat_text))
+	button.pressed.connect(func(): _on_give_item_btn_pressed(nome, stat_value, price))
+	button.mouse_entered.connect(func(): _on_give_item_btn_mouse_entered(button, nome, price_text, stat_text))
 	button.mouse_exited.connect(func(): _on_item_btn_mouse_exited())
 	
 			
@@ -542,9 +542,9 @@ func _on_eat_btn_mouse_entered(button: Button, title: String, satiety: String, m
 
 func _on_item_btn_pressed(item_name: String, price: int, stat_type: String, stat_value: int, max_amount: int) -> void:
 	ButtonSound.play_click_sound()
-	if stat_type == 'Random':
+	if stat_type == 'random':
 		var types = {1 : 'str', 2 : 'def', 3 : 'spd', 4 : 'dex', 5 : 'hp'}
-		SaveManager.stats.add_stat(types[randi_range(1, 5)], 50, SaveManager.stats.player_stats)
+		SaveManager.stats.add_stat(types[randi_range(1, 5)], stat_value, SaveManager.stats.player_stats)
 	else:
 		SaveManager.stats.add_item(item_name, price, stat_type, stat_value, max_amount)
 	if SaveManager.stats.inventory.has(item_name):
@@ -646,6 +646,7 @@ func _on_life_btn_pressed() -> void:
 			girl_stat_change(50, 50, randi_range(-15, -30))
 			time_slot += 1
 			exit_talk()
+			SaveManager.stats.events['Birthday'] == true
 		else:
 			choose_dialogue(40)
 	else:

@@ -21,8 +21,8 @@ func _ready():
 		place_random_object()
 
 func place_random_object():
-	var grid_x = randi_range(-MAP_SIZE.x / 2.0 / GRID_SIZE, MAP_SIZE.x / 2.0 / GRID_SIZE) * GRID_SIZE
-	var grid_y = randi_range(-MAP_SIZE.y / 2.0 / GRID_SIZE, MAP_SIZE.y / 2.0 / GRID_SIZE) * GRID_SIZE
+	var grid_x = randi_range(-MAP_SIZE.x / 2 / GRID_SIZE, MAP_SIZE.x / 2 / GRID_SIZE) * GRID_SIZE
+	var grid_y = randi_range(-MAP_SIZE.y / 2 / GRID_SIZE, MAP_SIZE.y / 2 / GRID_SIZE) * GRID_SIZE
 	var grid_position = Vector2(grid_x, grid_y)
 
 	if occupied_positions.has(grid_position):
