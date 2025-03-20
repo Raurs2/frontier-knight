@@ -14,7 +14,7 @@ const FADE = 0.5
 const ROTATION_SPEED = 5
 
 var health = SaveManager.stats.player_stats['hp']
-var speed = 400 * (1000 + SaveManager.stats.player_stats['spd']) / 1000 
+var speed = 420 * (1000 + SaveManager.stats.player_stats['spd']) / 1000 
 var shield = SaveManager.stats.player_stats['def'] / 2.0
 
 func _ready() -> void:
@@ -49,7 +49,7 @@ func _physics_process(delta: float) -> void:
 		var tween = create_tween()
 		tween.tween_property(health_bar, 'modulate', Color(1, 1, 1, 1), FADE)
 		
-		dmg_taken = slime_dmg * overlapping_mobs.size() * delta * 100 / (100 + shield)
+		var dmg_taken = slime_dmg * overlapping_mobs.size() * delta * 100 / (100 + shield)
 		health -= dmg_taken
 		SaveManager.stats.damage_taken += dmg_taken
 		health_bar.value = health

@@ -1,13 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0ynccbvyery2"]
+[gd_scene load_steps=3 format=3 uid="uid://b0ynccbvyery2"]
 
 [ext_resource type="Texture2D" uid="uid://cl6dffgd6h4vx" path="res://assets/forest/tree 1.png" id="1_1ee0a"]
-[ext_resource type="Script" path="res://scripts/tree_1.gd" id="1_y4wrj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jpgjw"]
 size = Vector2(19, 21)
 
 [node name="Tree1" type="StaticBody2D"]
-script = ExtResource("1_y4wrj")
 
 [node name="Tree1" type="Sprite2D" parent="."]
 position = Vector2(0, -311)

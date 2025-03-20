@@ -202,7 +202,7 @@ func _ready() -> void:
 	connect_buttons(decent_btn, eat_decent_btn, 'Decent Meal', 0.39, 'satiety', 7, 100)
 	connect_buttons(home_btn, eat_home_btn, 'Homemade Meal', 0.45, 'satiety', 7.5, 100)
 	connect_buttons(expensive_btn, eat_expensive_btn, 'Expensive Meal', 0.75, 'satiety', 8.5, 100)
-	connect_buttons(noble_btn, eat_noble_btn, 'Noble Meal', 1.2, 'satiety', 0.95, 100)
+	connect_buttons(noble_btn, eat_noble_btn, 'Noble Meal', 1.2, 'satiety', 9.5, 100)
 	#gift & give
 	connect_buttons_give(wooden_btn, give_wooden_btn, 'Wooden Doll', 0.50, 'trust', 2.0, 100)
 	connect_buttons_give(marbles_btn, give_marbles_btn, 'Marbles', 0.35, 'trust', 1.7, 100)
@@ -268,7 +268,7 @@ func connect_eat_button(button: Button, nome: String, stat_type: String, stat_mu
 	var mood_text = "Mood +%d " % mood
 	
 	button.pressed.connect(func(): _on_eat_btn_pressed(nome, stat_value, mood))
-	button.mouse_entered.connect(func(): _on_eat_btn_mouse_entered(button, name, stat_text, mood_text))
+	button.mouse_entered.connect(func(): _on_eat_btn_mouse_entered(button, nome, stat_text, mood_text))
 	button.mouse_exited.connect(func(): _on_item_btn_mouse_exited())
 
 func connect_item_button(button: Button, nome: String, price_multiplier: float, stat_type: String, stat_multiplier: float, quantity: int):
@@ -369,6 +369,7 @@ func show_desc(button: Button, title: String, text1: String, text2: String, text
 func girl_stat_change(trust: int, mood: int, hunger: int):
 	if hunger <= 0:
 		time_slot += 1
+		SaveManager.stats.day_time = time_slot
 	SaveManager.stats.add_stat('trust', trust, SaveManager.stats.girl_stats)
 	SaveManager.stats.add_stat('mood', mood, SaveManager.stats.girl_stats)
 	SaveManager.stats.add_stat('hunger', hunger, SaveManager.stats.girl_stats)
@@ -416,6 +417,7 @@ func _on_eat_button_pressed() -> void:
 			button.disabled = true
 		eat_button.disabled = false
 		set_visibility_buttons(button_map_eat)
+	
 
 func sleep():
 	choose_dialogue(24)
@@ -503,9 +505,9 @@ func _on_give_item_btn_pressed(item: String, trust: int, mood: int):
 			SaveManager.stats.remove_item(item)
 			girl_stat_change(trust, mood, randi_range(-15, -30))
 			set_visibility_buttons(button_map_give)
+			
+		if SaveManager.stats.inventory.has(item):
 			text_3l.text = 'Owned: %d' % SaveManager.stats.inventory[item].quantity
-		else:
-			text_3l.text = 'Owned: 0'
 			
 		give_gift_menu.visible = false
 		talking.visible = true
@@ -526,8 +528,6 @@ func _on_eat_btn_pressed(item: String, hunger: int, mood: int):
 
 	if SaveManager.stats.inventory.has(item):
 		text_3l.text = 'Owned: %d' % SaveManager.stats.inventory[item].quantity
-	else:
-		text_3l.text = 'Owned: 0'
 
 func _on_eat_btn_mouse_entered(button: Button, item: String, satiety: String, mood: String):
 	var owned = 'Owned: ' + str(SaveManager.stats.inventory[item].quantity) if SaveManager.stats.inventory.has(item) else 'Owned: 0'
@@ -557,7 +557,6 @@ func _on_work_btn_pressed(scene: String) -> void:
 	if scene == '':
 		end_of_content.popup_centered()
 	else:
-		SaveManager.stats.day_time = time_slot
 		girl_stat_change(0, randi_range(-10, 10), randi_range(-30, -20))
 		get_tree().change_scene_to_file(scene)
 
