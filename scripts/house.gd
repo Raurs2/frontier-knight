@@ -117,6 +117,7 @@ extends Control
 @onready var items_button: TextureButton = $Activities/Activities2/ItemsButton
 @onready var menu_button: TextureButton = $Activities/Activities2/MenuButton
 @onready var bgm: Bgm = $Bgm
+@onready var regen_potion_btn: Button = $Shop/PotionMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer/RegenPotionBtn
 
 var button_map_give
 var button_map_eat
@@ -219,6 +220,7 @@ func _ready() -> void:
 	connect_item_button(spd_potion_btn, "SPD Potion", 3, "spd", 2, 100)
 	connect_item_button(hp_potion_btn, "HP Potion", 3, "hp", 2, 100)
 	connect_item_button(ult_potion_btn, "ULTIMA Potion", 9, "random", 1, 100)
+	connect_item_button(regen_potion_btn, "Regeneration Potion", 3, "regen", 0.1, 100)
 
 	if not SaveManager.stats.events['Tutorial']:
 		dialog_box.is_dialog_started = true
@@ -329,11 +331,10 @@ func determine_trust():
 		trust_label.text = SaveManager.stats.girl_trust.find_key(9)
 
 func night():
-	work_button.disabled = true
-	shop_button.disabled = true
-	talk_button.disabled = true
-	eat_button.disabled = true
-	items_button.disabled = true
+	work_button.visible = false
+	shop_button.visible = false
+	talk_button.visible = false
+	eat_button.visible = false
 	sleep_button.disabled = false
 
 func pass_time():
@@ -425,6 +426,10 @@ func sleep():
 	SaveManager.stats.days += 1
 	day_label.text = str(SaveManager.stats.days)
 	SaveManager.save_game()
+	work_button.visible = true
+	shop_button.visible = true
+	talk_button.visible = true
+	eat_button.visible = true
 
 func _on_sleep_button_pressed() -> void:
 	girl_stat_change(0, 0, randi_range(-10, -20))

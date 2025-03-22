@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scripts/map_2.gd" id="1_g6asr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q2bhd"]
-size = Vector2(338.187, 2205.39)
+size = Vector2(1, 2205.39)
 
 [node name="Map2" type="Node2D"]
 script = ExtResource("1_g6asr")
@@ -22,6 +22,7 @@ texture = ExtResource("1_1vepn")
 metadata/_edit_use_anchors_ = true
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(35318, 81)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
@@ -30,6 +31,7 @@ scale = Vector2(7.72574, 27.0769)
 shape = SubResource("RectangleShape2D_q2bhd")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(-11317, 833)
@@ -37,6 +39,7 @@ scale = Vector2(7.72574, 27.0769)
 shape = SubResource("RectangleShape2D_q2bhd")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(1855, -2097)
 rotation = 1.5708
 
@@ -46,6 +49,7 @@ scale = Vector2(7.72574, 27.0769)
 shape = SubResource("RectangleShape2D_q2bhd")
 
 [node name="StaticBody2D5" type="StaticBody2D" parent="."]
+visible = false
 position = Vector2(80, 35237)
 rotation = 1.5708
 

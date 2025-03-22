@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://y6napfl41381"]
+[gd_scene load_steps=21 format=3 uid="uid://y6napfl41381"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_xuspo"]
 [ext_resource type="Texture2D" uid="uid://ccmskio3guhw5" path="res://assets/enemies/shadow.png" id="2_s0c8k"]
@@ -80,6 +80,8 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k6s6g"]
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8ugld"]
 radius = 6.38262
 height = 14.9417
@@ -115,10 +117,10 @@ animation = &"walk"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(11, -46)
+position = Vector2(9.72082, -46)
 rotation = -3.14159
-scale = Vector2(3.18334, 5.74124)
-shape = SubResource("CapsuleShape2D_8ugld")
+scale = Vector2(-0.803952, 2.93926)
+shape = SubResource("CapsuleShape2D_k6s6g")
 debug_color = Color(0.911082, 0.000101652, 0.727826, 0.42)
 
 [node name="Bow" parent="." instance=ExtResource("3_11dgj")]
@@ -151,8 +153,16 @@ value = 100.0
 show_percentage = false
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -20000000
+limit_top = -20000000
+limit_right = 20000000
+limit_bottom = 20000000
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 
+[node name="HealthRegen" type="Timer" parent="."]
+wait_time = 3.0
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="HealthRegen" to="." method="_on_health_regen_timeout"]

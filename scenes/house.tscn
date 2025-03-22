@@ -729,6 +729,11 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_constants/separation = 10
 
+[node name="RegenPotionBtn" type="Button" parent="Shop/PotionMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Regeneration Potion"
+
 [node name="StrPotionBtn" type="Button" parent="Shop/PotionMenu/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40

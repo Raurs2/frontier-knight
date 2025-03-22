@@ -9,12 +9,13 @@ signal health_depleted
 @onready var timer: Timer = $Timer
 @onready var health_bar: ProgressBar = $HealthBar
 @onready var hit_box: Area2D = $HitBox
+@onready var health_regen: Timer = $HealthRegen
 
 const FADE = 0.5
 const ROTATION_SPEED = 5
 
 var health = SaveManager.stats.player_stats['hp']
-var speed = 420 * (1000 + SaveManager.stats.player_stats['spd']) / 1000 
+var speed = 430 * (1000 + SaveManager.stats.player_stats['spd']) / 1000 
 var shield = SaveManager.stats.player_stats['def'] / 2.0
 
 func _ready() -> void:
@@ -25,6 +26,8 @@ func _physics_process(delta: float) -> void:
 	var direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	velocity = direction * speed
 	move_and_slide()
+	
+	health_bar.value = health
 	
 	sword_pivot.rotation += delta * ROTATION_SPEED
 	
@@ -45,7 +48,7 @@ func _physics_process(delta: float) -> void:
 	var slime_dmg = SaveManager.stats.slime_stats['dmg']
 	var overlapping_mobs = hit_box.get_overlapping_bodies()
 	if overlapping_mobs.size() > 0:
-		timer.start(2)
+		timer.start(3)
 		var tween = create_tween()
 		tween.tween_property(health_bar, 'modulate', Color(1, 1, 1, 1), FADE)
 		
@@ -57,5 +60,17 @@ func _physics_process(delta: float) -> void:
 			health_depleted.emit()
 
 func _on_timer_timeout() -> void:
-	var tween = create_tween()
-	tween.tween_property(health_bar, 'modulate', Color(1, 1, 1, 0), FADE)
+	health_regen.start(1)
+	#var tween = create_tween()
+	#tween.tween_property(health_bar, 'modulate', Color(1, 1, 1, 0), FADE)
+
+
+func _on_health_regen_timeout() -> void:
+	if health < SaveManager.stats.max_health:
+		health += SaveManager.stats.player_stats['regen']
+		health_bar.value = health
+		health_regen.start() 
+	else:
+		health_regen.stop()
+		var tween = create_tween()
+		tween.tween_property(health_bar, 'modulate', Color(1, 1, 1, 0), FADE)

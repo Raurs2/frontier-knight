@@ -14,7 +14,8 @@ func _process(_delta: float) -> void:
 	coins_earned.text = str(SaveManager.stats.coins_earned)
 
 func _on_button_pressed() -> void:
-	SaveManager.stats.player_stats['hp'] = 100
+	SaveManager.stats.max_health += 1
+	SaveManager.stats.player_stats['hp'] = SaveManager.stats.max_health
 	SaveManager.stats.add_gold(SaveManager.stats.coins_earned)
 
 	SaveManager.stats.coins_earned = 0
