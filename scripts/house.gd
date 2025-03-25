@@ -218,7 +218,7 @@ func _ready() -> void:
 	connect_item_button(dex_potion_btn, "DEX Potion", 3, "dex", 2, 100)
 	connect_item_button(def_potion_btn, "DEF Potion", 3, "def", 2, 100)
 	connect_item_button(spd_potion_btn, "SPD Potion", 3, "spd", 2, 100)
-	connect_item_button(hp_potion_btn, "HP Potion", 3, "hp", 2, 100)
+	connect_item_button(hp_potion_btn, "HP Potion", 3, "max_hp", 2, 100)
 	connect_item_button(ult_potion_btn, "ULTIMA Potion", 9, "random", 1, 100)
 	connect_item_button(regen_potion_btn, "Regeneration Potion", 3, "regen", 0.1, 100)
 	

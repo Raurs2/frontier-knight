@@ -1,5 +1,6 @@
 extends CPUParticles2D
 
+# Particle effects when enemies dies
 func _ready() -> void:
 	emitting = true
 	var tween = create_tween()

@@ -18,6 +18,9 @@ signal dialog_finished
 func _ready() -> void:
 	load_dialog()
 
+# Update the dialogue state, when a dialogue begin it will  unhide the dialogue box,
+# And when the player clicks the action button it will skip dialogue animation or
+# skip to the next dialogue
 func _process(_delta: float) -> void:
 	if is_dialog_started and first_dialog:
 		visible = true
@@ -33,6 +36,7 @@ func _process(_delta: float) -> void:
 			else:
 				load_dialog()
 
+# It will run while there is dialogue or it's not an '-END-' string
 func load_dialog():
 	if dialog_index < messages.size() and messages[dialog_index] != '-END-':
 		rich_text_label.text = messages[dialog_index]
@@ -42,11 +46,12 @@ func load_dialog():
 		
 		if tween and tween.is_running():
 			tween.kill()
-
+			
+		# Animate dialogue 
 		tween = get_tree().create_tween()
 		tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 		tween.tween_property(rich_text_label, 'visible_ratio', 1, text_speed)
-		tween.tween_callback(on_text_finished)
+		tween.tween_callback(on_text_finished) # Call function in order to skip animation
 		
 		is_speaking = true
 		dialog_index += 1
@@ -59,6 +64,7 @@ func load_dialog():
 func on_text_finished():
 	is_speaking = false
 
+# Skip animation and show complete text
 func finish_text_animation():
 	if tween and tween.is_running():
 		tween.kill()

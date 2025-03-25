@@ -14,25 +14,31 @@ func _process(_delta: float) -> void:
 	coins_earned.text = str(SaveManager.stats.coins_earned)
 
 func _on_button_pressed() -> void:
-	SaveManager.stats.max_health += 1
-	SaveManager.stats.player_stats['hp'] = SaveManager.stats.max_health
+	# restore player hp
+	SaveManager.stats.player_stats['hp'] = SaveManager.stats.player_stats["max_hp"]
+	
+	# Add earned gold to player gold
 	SaveManager.stats.add_gold(SaveManager.stats.coins_earned)
-
+	
+	# resets level run stats
 	SaveManager.stats.coins_earned = 0
 	SaveManager.stats.kill_count = 0
 	SaveManager.stats.damage_given = 0
 	SaveManager.stats.damage_taken = 0
-
+	
+	# Slimes gets a little stronger for the next run
 	SaveManager.stats.slime_stats['def'] += 1
 	SaveManager.stats.slime_stats['dmg'] += 1.0
 	SaveManager.stats.slime_stats['hp'] += 1
 	SaveManager.stats.slime_stats['spd'] += 1
-
+	
+	# Globins gets a little stronger for the next run
 	SaveManager.stats.globin_stats['def'] += 1
 	SaveManager.stats.globin_stats['dmg'] += 1.0
 	SaveManager.stats.globin_stats['hp'] += 1
 	SaveManager.stats.globin_stats['spd'] += 1
-
+	
+	# if its the first time playing shows prologue
 	if not SaveManager.stats.events['Tutorial']:
 		get_tree().change_scene_to_file("res://scenes/prologue2.tscn")
 	else:

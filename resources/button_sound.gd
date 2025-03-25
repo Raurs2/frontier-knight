@@ -7,6 +7,7 @@ func _ready():
 	add_child(audio_player)
 	audio_player.bus = "res://default_bus_layout.tres"
 
+# Mouse click sound when clicking buttons
 func play_click_sound():
 	audio_player.stream = OLD_RADIO_BUTTON_CLICK_97549
 	audio_player.volume_db = -10

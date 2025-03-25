@@ -12,6 +12,7 @@ var hit_effects = {
 func _ready() -> void:
 	randomize()
 
+# Play random hit sound effect
 func play_audio():
 	var play_toaudio = hit_effects[randi_range(1, 3)]
 	audio_stream_player.stream = play_toaudio
