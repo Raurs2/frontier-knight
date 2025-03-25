@@ -24,6 +24,7 @@ const music_selection = {
 	9 : SYNTHESIZER_FANTASY_308299
 }
 
+# Background Music player
 func play_audio(index : int):
 	stream = music_selection[index]
 	volume_db = -15
